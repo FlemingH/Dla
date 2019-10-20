@@ -287,6 +287,7 @@ public class StartMenuManager : MonoBehaviour
             if (menuMap.meun == 4 && menuMap.length == 1)
             {
                 CanvasShade.instance.ShowCanvas();
+                CanvasShade.instance.ShowControlKey();
             }
         }
         if (Input.GetKeyUp(KeyCode.Escape))
@@ -324,6 +325,7 @@ public class StartMenuManager : MonoBehaviour
             if (CanvasShade.isCanvasOpen)
             {
                 CanvasShade.instance.HideCanvas();
+                CanvasShade.instance.HideControlKey();
             }
         }
     }

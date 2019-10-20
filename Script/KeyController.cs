@@ -23,9 +23,11 @@ public class KeyController : MonoBehaviour
             if (!CanvasShade.isCanvasOpen)
             {
                 CanvasShade.instance.ShowCanvas();
+                CanvasShade.instance.ShowMenu();
             } else
             {
                 CanvasShade.instance.HideCanvas();
+                CanvasShade.instance.HideMenu();
             }
         }
     }
