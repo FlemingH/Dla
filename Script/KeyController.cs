@@ -13,7 +13,8 @@ public class KeyController : MonoBehaviour
 
     private void KeyControl()
     {
-        if (SceneManager.GetActiveScene().name == "StartMenuScene")
+        // || is for startMenuScene ControlKey
+        if (SceneManager.GetActiveScene().name == "StartMenuScene" || CanvasShade.isCanvasOpen)
         {
             return;
         }
@@ -23,11 +24,7 @@ public class KeyController : MonoBehaviour
             if (!CanvasShade.isCanvasOpen)
             {
                 CanvasShade.instance.ShowCanvas();
-                CanvasShade.instance.ShowMenu();
-            } else
-            {
-                CanvasShade.instance.HideCanvas();
-                CanvasShade.instance.HideMenu();
+                CanvasShade.instance.ShowMenu(1, 1);
             }
         }
     }

@@ -153,43 +153,24 @@ public class StartMenuManager : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
-            if (CanvasShade.isCanvasOpen)
-            {
-                return;
-            }
-            if (menuMap.length == 1)
-            {
-                return;
-            } else
+            if (CanvasShade.isCanvasOpen) return;
+            if (menuMap.length == 1) return;
+
+            else
             {
                 menuMap.length -= 1;
                 SwitchText();
-                if (menuMap.meun == 1 || menuMap.meun == 2)
-                {
-                    lastMenu = menuMap.meun;
-                    lastLength = menuMap.length;
-                }
             }
         }
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            if (CanvasShade.isCanvasOpen)
-            {
-                return;
-            }
-            if (menuMap.length == menuMap.GetMenuLength())
-            {
-                return;
-            }
+            if (CanvasShade.isCanvasOpen) return;
+            if (menuMap.length == menuMap.GetMenuLength()) return;
+
             else
             {
                 menuMap.length += 1;
                 SwitchText();
-                if (menuMap.meun == 1 || menuMap.meun == 2)
-                {
-                    lastMenu = menuMap.meun;
-                    lastLength = menuMap.length;
-                }
             }
         }
         if (Input.GetKeyUp(KeyCode.Return))
