@@ -227,6 +227,10 @@ public class CanvasShade : MonoBehaviour
                 // yes
                 if (menuMap.length == 2)
                 {
+                    HideConfirmQuit();
+                    HideMenu();
+                    HideCanvas();
+                    SceneManager.LoadScene("StartMenuScene");
                     return;
                 }
             }

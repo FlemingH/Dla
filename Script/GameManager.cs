@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,11 +24,28 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
 
-        startMenuManager = GetComponent<StartMenuManager>();
-        keyController = GetComponent<KeyController>();
+    // run when scence loaded
+    private void OnSceneLoaded(Scene scence, LoadSceneMode mod)
+    {
+        if (scence.name == "StartMenuScene")
+        {
+            startMenuManager = GetComponent<StartMenuManager>();
+            keyController = GetComponent<KeyController>();
 
-        InitGame();
+            InitGame();
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void InitGame()
