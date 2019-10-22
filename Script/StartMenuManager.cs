@@ -221,7 +221,7 @@ public class StartMenuManager : MonoBehaviour
                 // new game
                 if (menuMap.length == 2)
                 {
-
+                    SceneManager.LoadScene("PrologueScene");
                 }
                 // read file
                 if (menuMap.length == 3)

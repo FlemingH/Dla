@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private StartMenuManager startMenuManager;
     private KeyController keyController;
 
+    private PrologueScript prologueScript;
+
     private DataList dataList;
 
     private void Awake()
@@ -35,6 +37,12 @@ public class GameManager : MonoBehaviour
             keyController = GetComponent<KeyController>();
 
             InitGame();
+            return;
+        }
+        if (scence.name == "PrologueScene")
+        {
+            prologueScript = GetComponent<PrologueScript>();
+            prologueScript.ProloguProcedure();
         }
     }
 
