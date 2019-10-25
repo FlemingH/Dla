@@ -34,6 +34,9 @@ public class StartMenuManager : MonoBehaviour
     private Text textQuitConfirm;
 
     private DataList curDataList;
+    private UserData curUserData1;
+    private UserData curUserData2;
+    private UserData curUserData3;
     private int lastMenu;
     private int lastLength;
     private MenuMap menuMap;
@@ -67,6 +70,11 @@ public class StartMenuManager : MonoBehaviour
         textThanks = GameObject.Find("TextThanks").GetComponent<Text>();
 
         textQuitConfirm = GameObject.Find("TextQuitConfirm").GetComponent<Text>();
+
+        textFile1.text = (curUserData1.progress != "") ? curUserData1.progress : "空";
+        textFile2.text = (curUserData2.progress != "") ? curUserData2.progress : "空"; ;
+        textFile3.text = (curUserData3.progress != "") ? curUserData3.progress : "空"; ;
+
     }
 
     private void NewGameSetting()
@@ -118,6 +126,11 @@ public class StartMenuManager : MonoBehaviour
     {
 
         curDataList = dataList;
+
+        curUserData1 = JsonUtility.FromJson<UserData>(curDataList.data1);
+        curUserData2 = JsonUtility.FromJson<UserData>(curDataList.data2);
+        curUserData3 = JsonUtility.FromJson<UserData>(curDataList.data3);
+
         InitMenuObject();
 
         if (dataList.isNew)
@@ -178,6 +191,10 @@ public class StartMenuManager : MonoBehaviour
             // new game menu
             if (menuMap.meun == 1)
             {
+                if (menuMap.length == 1)
+                {
+                    SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data1).progress);
+                }
                 if (menuMap.length == 2)
                 {
                     lastMenu = menuMap.meun;
@@ -216,12 +233,25 @@ public class StartMenuManager : MonoBehaviour
                 // continue game
                 if (menuMap.length == 1)
                 {
-                    SceneManager.LoadScene("TestBlackScene");
+                    switch (curDataList.dataNum) {
+                        case 1:
+                            SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data1).progress);
+                            break;
+                        case 2:
+                            SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data2).progress);
+                            break;
+                        case 3:
+                            SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data3).progress);
+                            break;
+                        default:
+                            SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data1).progress);
+                            break;
+                    }
                 }
                 // new game
                 if (menuMap.length == 2)
                 {
-                    SceneManager.LoadScene("PrologueScene");
+                    NewGameRewriteFileAndLoadScene();
                 }
                 // read file
                 if (menuMap.length == 3)
@@ -254,6 +284,44 @@ public class StartMenuManager : MonoBehaviour
                     menuMap.length = 1;
                     SwitchText();
                     QuitConfirmSetting();
+                    return;
+                }
+            }
+
+            // read file
+            if (menuMap.meun == 3) 
+            {
+                if (menuMap.length == 1 && curUserData1.progress != "")
+                {
+                    curDataList.dataNum = 1;
+                    PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
+                    SceneManager.LoadScene(curUserData1.progress);
+                    return;
+                }
+                if (menuMap.length == 2 && curUserData2.progress != "")
+                {
+                    string data1 = curDataList.data2;
+                    string data2 = curDataList.data1;
+                    curDataList.data1 = data1;
+                    curDataList.data2 = data2;
+                    curDataList.dataNum = 1;
+                    PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
+
+                    SceneManager.LoadScene(curUserData2.progress);
+                    return;
+                }
+                if (menuMap.length == 3 && curUserData3.progress != "")
+                {
+                    string data1 = curDataList.data3;
+                    string data2 = curDataList.data1;
+                    string data3 = curDataList.data2;
+                    curDataList.data1 = data1;
+                    curDataList.data2 = data2;
+                    curDataList.data3 = data3;
+                    curDataList.dataNum = 1;
+                    PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
+
+                    SceneManager.LoadScene(curUserData3.progress);
                     return;
                 }
             }
@@ -387,6 +455,44 @@ public class StartMenuManager : MonoBehaviour
         }
 
         return textNewGame;
+    }
+
+    private void NewGameRewriteFileAndLoadScene()
+    {
+        if (curUserData2.progress == "")
+        {
+            curDataList.data2 = "{\"progress\": \"PrologueScene\"}";
+            curDataList.dataNum = 2;
+            // save data
+            PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
+            SceneManager.LoadScene("PrologueScene");
+            return;
+        }
+
+        if (curUserData3.progress == "")
+        {
+            curDataList.data3 = "{\"progress\": \"PrologueScene\"}";
+            curDataList.dataNum = 3;
+            // save data
+            PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
+            SceneManager.LoadScene("PrologueScene");
+            return;
+        }
+
+        if (curUserData1.progress != "" && curUserData2.progress != "" && curUserData3.progress != "")
+        {
+            // queue mode
+            string data1 = curDataList.data1;
+            string data2 = curDataList.data2;
+            curDataList.data1 = "{\"progress\": \"PrologueScene\"}";
+            curDataList.data2 = data1;
+            curDataList.data3 = data2;
+            curDataList.dataNum = 1;
+            // sava data
+            PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
+            SceneManager.LoadScene("PrologueScene");
+            return;
+        }
     }
 }
 

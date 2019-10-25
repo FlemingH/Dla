@@ -29,6 +29,9 @@ public class CanvasShade : MonoBehaviour
     private int lastMenu;
     private int lastLength;
 
+    // the scene need to stop invoke
+    private PrologueScript prologueScript;
+
     private void Awake()
     {
         if (instance == null)
@@ -51,6 +54,8 @@ public class CanvasShade : MonoBehaviour
         textQuitGameS = GameObject.Find("TextQuitGameS").GetComponent<Text>();
         textNoS = GameObject.Find("TextNoS").GetComponent<Text>();
         textYesS = GameObject.Find("TextYesS").GetComponent<Text>();
+
+        prologueScript = GetComponent<PrologueScript>();
 
         HideCanvas();
         HideMenu();
@@ -167,6 +172,7 @@ public class CanvasShade : MonoBehaviour
                 // continue game
                 if (menuMap.length == 1)
                 {
+                    Time.timeScale = 1f;
                     HideMenu();
                     HideCanvas();
                     return;
@@ -227,9 +233,13 @@ public class CanvasShade : MonoBehaviour
                 // yes
                 if (menuMap.length == 2)
                 {
+                    Time.timeScale = 1f;
                     HideConfirmQuit();
                     HideMenu();
                     HideCanvas();
+
+                    prologueScript.CancelInvoke();
+
                     SceneManager.LoadScene("StartMenuScene");
                     return;
                 }
@@ -263,6 +273,7 @@ public class CanvasShade : MonoBehaviour
             // quit canvas
             if (menuMap.meun == 1)
             {
+                Time.timeScale = 1f;
                 HideMenu();
                 HideCanvas();
                 return;

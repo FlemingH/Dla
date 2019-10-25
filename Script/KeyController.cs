@@ -23,6 +23,7 @@ public class KeyController : MonoBehaviour
         {
             if (!CanvasShade.isCanvasOpen)
             {
+                Time.timeScale = 0;
                 CanvasShade.instance.ShowCanvas();
                 CanvasShade.instance.ShowMenu(1, 1);
             }

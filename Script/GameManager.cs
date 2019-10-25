@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
         {
             prologueScript = GetComponent<PrologueScript>();
             prologueScript.ProloguProcedure();
+            return;
+        }
+        if (scence.name == "Chapter101")
+        {
+            RewriteDataList("Chapter101");
+            //todo c101
         }
     }
 
@@ -58,29 +64,56 @@ public class GameManager : MonoBehaviour
 
     private void InitGame()
     {
-        Cursor.visible = false;
+        // Cursor.visible = false;
         startMenuManager.InitMenu(GetUserData());
     }
 
     private DataList GetUserData()
     {
-
         dataList = new DataList();
 
         if (PlayerPrefs.HasKey("DataList"))
         {
             dataList = JsonUtility.FromJson<DataList>(PlayerPrefs.GetString("DataList"));
             dataList.isNew = false;
+            dataList.dataNum = 1;
         } else
         {
-            dataList.data1 = "testData";
-            dataList.data2 = "";
-            dataList.data3 = "";
+            dataList.data1 = "{\"progress\": \"PrologueScene\"}";
+            dataList.data2 = "{\"progress\": \"\"}";
+            dataList.data3 = "{\"progress\": \"\"}";
             dataList.isNew = true;
+            dataList.dataNum = 1;
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(dataList));
         }
 
         return dataList;
+    }
+
+    private void RewriteDataList(string sceneName)
+    {
+        DataList curDataList = JsonUtility.FromJson<DataList>(PlayerPrefs.GetString("DataList"));
+        UserData curUserData;
+
+        switch (curDataList.dataNum)
+        {
+            case 1:
+                curUserData = JsonUtility.FromJson<UserData>(curDataList.data1);
+                curUserData.progress = sceneName;
+                curDataList.data1 = JsonUtility.ToJson(curUserData);
+                break;
+            case 2:
+                curUserData = JsonUtility.FromJson<UserData>(curDataList.data2);
+                curUserData.progress = sceneName;
+                curDataList.data2 = JsonUtility.ToJson(curUserData);
+                break;
+            case 3:
+                curUserData = JsonUtility.FromJson<UserData>(curDataList.data3);
+                curUserData.progress = sceneName;
+                curDataList.data3 = JsonUtility.ToJson(curUserData);
+                break;
+        }
+        PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
     }
 
 }
@@ -91,4 +124,10 @@ public class DataList
     public string data2;
     public string data3;
     public bool isNew;
+    public int dataNum;
+}
+
+public class UserData
+{
+    public string progress;
 }

@@ -2,26 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PrologueScript : MonoBehaviour
 {
-
-    private void Awake()
-    {
-        ProloguProcedure();
-    }
-
     private GameObject panelAuthor;
-
     private Text textShowing;
-    
-    // the char showing everytime
-    private string s = "";
 
     public void ProloguProcedure ()
     {
-
         InitScene();
+
+        CancelInvoke();
 
         Invoke("ShowPanelAuthor", 3f); // 5s
         Invoke("HidePanelAuthor", 7f); // 3s
@@ -36,67 +28,111 @@ public class PrologueScript : MonoBehaviour
         Invoke("HideTextShowing", 29f); // 2s
 
         Invoke("IfAChildDie", 31f); // 7s
-        Invoke("HideTextShowing", 38f); // 2s
+        Invoke("HideTextShowing", 38f); // 3s
+
+        Invoke("LoadChapter101", 41f);
     }
 
     private void InitScene()
     {
         panelAuthor = GameObject.Find("PanelAuthor");
         textShowing = GameObject.Find("TextShowing").GetComponent<Text>();
+
         panelAuthor.SetActive(false);
     }
 
-    private IEnumerator ShowText (string str ,int strLength)
+    private void ShowPanelAuthor()
     {
-        int i = 0;
-        while (i < strLength)
+        if (panelAuthor == null)
         {
-            yield return new WaitForSeconds(0.1f);
-            s += str[i].ToString();
-            textShowing.text = s;
-            i += 1;
-        }
-        StopAllCoroutines();
-    }
-
-    private void ShowPanelAuthor ()
-    {
+            CancelInvoke();
+            return;
+        } 
         panelAuthor.SetActive(true);
     }
 
-    private void HidePanelAuthor ()
+    private void HidePanelAuthor()
     {
+        if (panelAuthor == null)
+        {
+            CancelInvoke();
+            return;
+        }
         panelAuthor.SetActive(false);
     }
 
-    private void HideTextShowing ()
+    private void HideTextShowing()
     {
+        if (GameObject.Find("TextShowing") == null)
+        {
+            CancelInvoke();
+            return;
+        }
+
         textShowing.text = "";
-        s = "";
     }
 
     private void ThisIsHelsingborg()
     {
+        if (GameObject.Find("TextShowing") == null)
+        {
+            CancelInvoke();
+            return;
+        }
+
         string str = "这里是赫尔辛堡，平安夜的早晨。";
-        StartCoroutine(ShowText(str, str.Length));
+        ShowChar.uiText = textShowing;
+        ShowChar.words = str;
+        ShowChar.isPrint = true;
     }
 
     private void IJustKillAMan()
     {
+        if (GameObject.Find("TextShowing") == null)
+        {
+            CancelInvoke();
+            return;
+        }
+
         string str = "我刚才杀了一个人...";
-        StartCoroutine(ShowText(str, str.Length));
+        ShowChar.uiText = textShowing;
+        ShowChar.words = str;
+        ShowChar.isPrint = true;
     }
 
     private void IsEveryoneEqual()
     {
+        if (GameObject.Find("TextShowing") == null)
+        {
+            CancelInvoke();
+            return;
+        }
+
         string str = "所有生命都是平等的吗？";
-        StartCoroutine(ShowText(str, str.Length));
+        ShowChar.uiText = textShowing;
+        ShowChar.words = str;
+        ShowChar.isPrint = true;
     }
 
     private void IfAChildDie()
     {
+        if (GameObject.Find("TextShowing") == null)
+        {
+            CancelInvoke();
+            return;
+        }
+
         string str = "假如死去的是一个孩子，又会怎样...";
-        StartCoroutine(ShowText(str, str.Length));
+        ShowChar.uiText = textShowing;
+        ShowChar.words = str;
+        ShowChar.isPrint = true;
     }
 
+    private void LoadChapter101()
+    {
+        if (SceneManager.GetActiveScene().name == "PrologueScene")
+        {
+            SceneManager.LoadScene("Chapter101");
+        }
+    }
 }

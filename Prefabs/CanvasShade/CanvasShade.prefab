@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5573252547403870650}
   - component: {fileID: 5573252547403870645}
   - component: {fileID: -1760865128437763064}
+  - component: {fileID: 5455345895962814022}
   m_Layer: 5
   m_Name: CanvasShade
   m_TagString: Untagged
@@ -110,6 +111,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8132dee16df0a9b4e8ed653b78e3e35f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5455345895962814022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5573252547403870644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f710af3a1f1860848a2ba8fb3e8cd91f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4823307722568000563
