@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private KeyController keyController;
 
     private PrologueScript prologueScript;
+    private C101Script c101Script;
 
     private DataList dataList;
 
@@ -48,7 +49,9 @@ public class GameManager : MonoBehaviour
         if (scence.name == "Chapter101")
         {
             RewriteDataList("Chapter101");
-            //todo c101
+            c101Script = GetComponent<C101Script>();
+            c101Script.C101Procedure();
+            return;
         }
     }
 
