@@ -14,17 +14,11 @@ public class BasicMovement : MonoBehaviour
 
         GetDirection(0.0f, 0.0f);
 
-        if ((movement.x == 0 || movement.y == 0) && (movement.x != 0 || movement.y != 0))
-        {
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
-            animator.SetFloat("Magnitude", movement.magnitude);
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Magnitude", movement.magnitude);
 
-            transform.position += movement * Time.deltaTime * 100;
-        } else
-        {
-            animator.SetFloat("Magnitude", 0);
-        }
+        transform.position += movement * Time.deltaTime * 100;
     }
 
     private int GetDirection(float x, float y)
