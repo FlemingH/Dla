@@ -9,43 +9,53 @@ public class PrologueScript : MonoBehaviour
     private GameObject panelAuthor;
     private Text textShowing;
 
-    public void ProloguProcedure ()
+    private static string[] lineList = new string[] {
+        "这里是赫尔辛堡，平安夜的早晨。",
+        "我刚才杀了一个人...",
+        "所有生命都是平等的吗？",
+        "假如死去的是一个孩子，又会怎样..."
+    };
+
+    private void LoadLineTask()
     {
-        InitScene();
+        Timer.Instance.AddTimerTask(3, ShowPanelAuthor);
+        Timer.Instance.AddTimerTask(7, HidePanelAuthor);
 
-        CancelInvoke();
+        Timer.Instance.AddTimerTask(10, ThisIsHelsingborg);
+        Timer.Instance.AddTimerTask(15, HideTextShowing);
 
-        Invoke("ShowPanelAuthor", 3f); // 5s
-        Invoke("HidePanelAuthor", 7f); // 3s
+        Timer.Instance.AddTimerTask(17, IJustKillAMan);
+        Timer.Instance.AddTimerTask(23, HideTextShowing);
 
-        Invoke("ThisIsHelsingborg", 10f); // 5s
-        Invoke("HideTextShowing", 15f); // 2s
+        Timer.Instance.AddTimerTask(25, IsEveryoneEqual);
+        Timer.Instance.AddTimerTask(29, HideTextShowing);
 
-        Invoke("IJustKillAMan", 17f); // 6s
-        Invoke("HideTextShowing", 23f); // 2s
+        Timer.Instance.AddTimerTask(31, IfAChildDie);
+        Timer.Instance.AddTimerTask(38, HideTextShowing);
 
-        Invoke("IsEveryoneEqual", 25f); // 4s
-        Invoke("HideTextShowing", 29f); // 2s
-
-        Invoke("IfAChildDie", 31f); // 7s
-        Invoke("HideTextShowing", 38f); // 3s
-
-        Invoke("LoadChapter101", 41f);
+        Timer.Instance.AddTimerTask(41, LoadChapter101);
     }
 
-    private void InitScene()
+    public void InitScene()
     {
         panelAuthor = GameObject.Find("PanelAuthor");
         textShowing = GameObject.Find("TextShowing").GetComponent<Text>();
 
         panelAuthor.SetActive(false);
+        HideTextShowing();
+
+        LoadLineTask();
+    }
+
+    private void Update()
+    {
+        Timer.Instance.UpdateTimer();
     }
 
     private void ShowPanelAuthor()
     {
         if (panelAuthor == null)
         {
-            CancelInvoke();
             return;
         } 
         panelAuthor.SetActive(true);
@@ -55,7 +65,6 @@ public class PrologueScript : MonoBehaviour
     {
         if (panelAuthor == null)
         {
-            CancelInvoke();
             return;
         }
         panelAuthor.SetActive(false);
@@ -65,68 +74,27 @@ public class PrologueScript : MonoBehaviour
     {
         if (GameObject.Find("TextShowing") == null)
         {
-            CancelInvoke();
             return;
         }
-
         textShowing.text = "";
     }
 
-    private void ThisIsHelsingborg()
+    private void ShowTheLine(string line)
     {
         if (GameObject.Find("TextShowing") == null)
         {
-            CancelInvoke();
             return;
         }
 
-        string str = "这里是赫尔辛堡，平安夜的早晨。";
         ShowChar.uiText = textShowing;
-        ShowChar.words = str;
+        ShowChar.words = line;
         ShowChar.isPrint = true;
     }
 
-    private void IJustKillAMan()
-    {
-        if (GameObject.Find("TextShowing") == null)
-        {
-            CancelInvoke();
-            return;
-        }
-
-        string str = "我刚才杀了一个人...";
-        ShowChar.uiText = textShowing;
-        ShowChar.words = str;
-        ShowChar.isPrint = true;
-    }
-
-    private void IsEveryoneEqual()
-    {
-        if (GameObject.Find("TextShowing") == null)
-        {
-            CancelInvoke();
-            return;
-        }
-
-        string str = "所有生命都是平等的吗？";
-        ShowChar.uiText = textShowing;
-        ShowChar.words = str;
-        ShowChar.isPrint = true;
-    }
-
-    private void IfAChildDie()
-    {
-        if (GameObject.Find("TextShowing") == null)
-        {
-            CancelInvoke();
-            return;
-        }
-
-        string str = "假如死去的是一个孩子，又会怎样...";
-        ShowChar.uiText = textShowing;
-        ShowChar.words = str;
-        ShowChar.isPrint = true;
-    }
+    private void ThisIsHelsingborg() { ShowTheLine(lineList[0]); }
+    private void IJustKillAMan() { ShowTheLine(lineList[1]); }
+    private void IsEveryoneEqual() { ShowTheLine(lineList[2]); }
+    private void IfAChildDie() { ShowTheLine(lineList[3]); }
 
     private void LoadChapter101()
     {

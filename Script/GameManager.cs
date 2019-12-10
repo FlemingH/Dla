@@ -43,14 +43,14 @@ public class GameManager : MonoBehaviour
         if (scence.name == "PrologueScene")
         {
             prologueScript = GetComponent<PrologueScript>();
-            prologueScript.ProloguProcedure();
+            prologueScript.InitScene();
             return;
         }
         if (scence.name == "Chapter101")
         {
             RewriteDataList("Chapter101");
             c101Script = GetComponent<C101Script>();
-            c101Script.C101Procedure();
+            c101Script.InitScene();
             return;
         }
     }

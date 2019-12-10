@@ -10,7 +10,7 @@ public class C101Script : MonoBehaviour
     // for test
     private void Start()
     {
-        C101Procedure();
+        InitScene();
     }
 
     private static string[] lineList1 = new string[] {
@@ -35,26 +35,28 @@ public class C101Script : MonoBehaviour
         "我希望不是明天"
     };
 
-    public void C101Procedure()
-    {
-        InitScene();
-        CancelInvoke();
-
-        Invoke("MetHer", 3f); // 4s
-        Invoke("WantRed", 7f); // 6s
-        Invoke("PrintRed", 13f); // 4s
-        Invoke("Use20Box", 17f); // 4s
-        Invoke("GiveHerPrint", 21f); // 4s
-    }
-
-    private void InitScene()
+    public void InitScene()
     {
         ShowLine.linePanel = GameObject.Find("PanelShowingLine");
         ShowLine.uiLine = GameObject.Find("LineShowing").GetComponent<Text>();
 
         ShowLine.ClearTheLine();
+        LoadLine1();
     }
 
+    private void Update()
+    {
+        Timer.Instance.UpdateTimer();
+    }
+
+    private void LoadLine1()
+    {
+        Timer.Instance.AddTimerTask(4, MetHer);
+        Timer.Instance.AddTimerTask(8, WantRed);
+        Timer.Instance.AddTimerTask(14, PrintRed);
+        Timer.Instance.AddTimerTask(18, Use20Box);
+        Timer.Instance.AddTimerTask(22, GiveHerPrint);
+    }
     private void MetHer() { ShowLine.ShowTheLine(lineList1[0]); }
     private void WantRed() { ShowLine.ShowTheLine(lineList1[1]); }
     private void PrintRed() { ShowLine.ShowTheLine(lineList1[2]); }
