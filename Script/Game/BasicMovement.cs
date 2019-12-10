@@ -26,6 +26,11 @@ public class BasicMovement : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (CanvasShade.isCanvasOpen)
+        {
+            return;
+        }
+
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
             animator.SetInteger("direction", 1);
