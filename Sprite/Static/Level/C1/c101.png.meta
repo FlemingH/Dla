@@ -8,6 +8,45 @@ TextureImporter:
   - first:
       213: 7458485643695268548
     second: background
+  - first:
+      213: -134007963368232517
+    second: Wall_right
+  - first:
+      213: 8194695426286258026
+    second: Wall_left
+  - first:
+      213: -4504795236098142717
+    second: Bench_collider
+  - first:
+      213: 6750349646150125788
+    second: Chair_dudu_collider
+  - first:
+      213: 9061897457926678573
+    second: Room_chair_collider
+  - first:
+      213: 6719686199142701526
+    second: Room_table_collider
+  - first:
+      213: -4562754634211610886
+    second: Room_bed_collider
+  - first:
+      213: 7002931026071431734
+    second: Room_top_border
+  - first:
+      213: -5578715516064763131
+    second: Border_down
+  - first:
+      213: 8194695426286258026
+    second: Border_left
+  - first:
+      213: 4081889700184367556
+    second: Border_right
+  - first:
+      213: 5138936329397484641
+    second: Room_border_left
+  - first:
+      213: 8194695426286258026
+    second: Room_border_right
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -37,7 +76,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -47,7 +86,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 10
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -69,9 +108,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -81,9 +120,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -93,9 +132,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -105,9 +144,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -117,9 +156,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -131,9 +170,9 @@ TextureImporter:
       name: Door_head
       rect:
         serializedVersion: 2
-        x: 1078
+        x: 1086
         y: 346
-        width: 126
+        width: 110
         height: 83
       alignment: 9
       pivot: {x: 0.5147618, y: -2.233482}
@@ -159,12 +198,294 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -960, y: -400}
+        - {x: -960, y: 400}
+        - {x: 960, y: 400}
+        - {x: 960, y: -400}
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 677680da0f3206542b128b950c65b832
       internalID: 7458485643695268548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall_right
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 152
+        width: 724
+        height: 277
+      alignment: 9
+      pivot: {x: 0.50000036, y: 0.04}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a88a779e34760d94ea25ee53d26339a8
+      internalID: -134007963368232517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 152
+        width: 1086
+        height: 277
+      alignment: 9
+      pivot: {x: 0.50060725, y: 0.04}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9b655ab6f1dae44ab2700c7c1293f8
+      internalID: 8194695426286258026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bench_collider
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 126
+        width: 370
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef0cf979a14db341ac5dc7147ff7049
+      internalID: -4504795236098142717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chair_dudu_collider
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 126
+        width: 126
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b0325700a3415488e9e16012a3f869
+      internalID: 6750349646150125788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_chair_collider
+      rect:
+        serializedVersion: 2
+        x: 1095
+        y: 446
+        width: 59
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac3e1f19c43cdd84d9f20fbb4b06a6ce
+      internalID: 9061897457926678573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_table_collider
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 463
+        width: 59
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3371809f48fb0d94fa79555fef6ca596
+      internalID: 6719686199142701526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_bed_collider
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 463
+        width: 404
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7898e8cab132b624aadceee63ab7d2df
+      internalID: -4562754634211610886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_top_border
+      rect:
+        serializedVersion: 2
+        x: 977
+        y: 522
+        width: 615
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8dfdbef4726de14498f481dc71799fa
+      internalID: 7002931026071431734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_down
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1920
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfeb6c32a03950841801ce063746aad6
+      internalID: -5578715516064763131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4
+        width: 3
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 402f8857e99bcfa499e221ac448fbf76
+      internalID: 8194695426286258026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Border_right
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 4
+        width: 6
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5d1631a4fa95f41ad270e3fad35771
+      internalID: 4081889700184367556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_border_left
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 429
+        width: 51
+        height: 371
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f82e435f3255ec745bebd61f8b7563e2
+      internalID: 5138936329397484641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_border_right
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 160
+        width: 303
+        height: 396
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 43.5, y: -198}
+        - {x: -151.5, y: 164}
+        - {x: -118.5, y: 164}
+        - {x: -84.46753, y: 103.31143}
+        - {x: 84.5, y: -198}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc30e3e9726362e4a9c991eb545fc46b
+      internalID: 8194695426286258026
       vertices: []
       indices: 
       edges: []
