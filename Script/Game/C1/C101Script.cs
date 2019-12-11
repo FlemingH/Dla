@@ -10,7 +10,7 @@ public class C101Script : MonoBehaviour
     // for test
     private void Start()
     {
-        InitScene();
+        //InitScene();
     }
 
     private static string[] lineList1 = new string[] {

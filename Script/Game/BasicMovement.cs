@@ -8,6 +8,8 @@ public class BasicMovement : MonoBehaviour
 
     public Animator animator;
 
+    public Rigidbody2D rb;
+
     void Update()
     {
         // to cancel wasd
@@ -20,7 +22,7 @@ public class BasicMovement : MonoBehaviour
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Magnitude", movement.magnitude);
 
-            transform.position += movement * Time.deltaTime * 100;
+            rb.velocity = new Vector2(movement.x * 200, movement.y * 200);
         }
     }
 
