@@ -10,25 +10,38 @@ public class BasicMovement : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    public static bool ableToMove = true;
+    public static int overrideDirection = -1;
+
     void Update()
     {
-        // to cancel wasd
-        if (!Input.GetKeyDown(KeyCode.W) || !Input.GetKeyDown(KeyCode.A) 
-            || !Input.GetKeyDown(KeyCode.S) || !Input.GetKeyDown(KeyCode.D))
+        Vector3 movement = new Vector3(0.0f, 0.0f, 0.0f);
+
+        // to cancel wasd && if able to move
+        if (ableToMove && (!Input.GetKeyDown(KeyCode.W) || !Input.GetKeyDown(KeyCode.A) 
+            || !Input.GetKeyDown(KeyCode.S) || !Input.GetKeyDown(KeyCode.D)))
         {
-            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
-
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
-            animator.SetFloat("Magnitude", movement.magnitude);
-
-            rb.velocity = new Vector2(movement.x * 200, movement.y * 200);
+            movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
         }
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Magnitude", movement.magnitude);
+
+        // if had to turn
+        if (overrideDirection != -1)
+        {
+            animator.SetInteger("direction", overrideDirection);
+            overrideDirection = -1;
+            return;
+        }
+
+        rb.velocity = new Vector2(movement.x * 200, movement.y * 200);
     }
 
     private void LateUpdate()
     {
-        if (CanvasShade.isCanvasOpen)
+        if (CanvasShade.isCanvasOpen || !ableToMove)
         {
             return;
         }

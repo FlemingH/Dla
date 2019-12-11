@@ -7,10 +7,17 @@ using UnityEngine.SceneManagement;
 public class C101Script : MonoBehaviour
 {
 
+    public bool isLineTriggered = false;
+
     // for test
     private void Start()
     {
         //InitScene();
+    }
+
+    private void Update()
+    {
+        Timer.Instance.UpdateTimer();
     }
 
     private static string[] lineList1 = new string[] {
@@ -41,13 +48,15 @@ public class C101Script : MonoBehaviour
         ShowLine.uiLine = GameObject.Find("LineShowing").GetComponent<Text>();
 
         ShowLine.ClearTheLine();
+
+        BasicMovement.ableToMove = false;
         LoadLine1();
     }
 
-    private void Update()
-    {
-        Timer.Instance.UpdateTimer();
-    }
+
+
+
+
 
     private void LoadLine1()
     {
@@ -56,17 +65,50 @@ public class C101Script : MonoBehaviour
         Timer.Instance.AddTimerTask(14, PrintRed);
         Timer.Instance.AddTimerTask(18, Use20Box);
         Timer.Instance.AddTimerTask(22, GiveHerPrint);
+        Timer.Instance.AddTimerTask(26, Line1Over);
     }
     private void MetHer() { ShowLine.ShowTheLine(lineList1[0]); }
     private void WantRed() { ShowLine.ShowTheLine(lineList1[1]); }
     private void PrintRed() { ShowLine.ShowTheLine(lineList1[2]); }
     private void Use20Box() { ShowLine.ShowTheLine(lineList1[3]); }
     private void GiveHerPrint() { ShowLine.ShowTheLine(lineList1[4]); }
+    private void Line1Over()
+    {
+        ShowLine.ClearTheLine();
 
+        Timer.Instance.AddTimerTask(2, () => {
+            ShowLine.ShowTheLine("（按下 ← 移动）");
+            BasicMovement.ableToMove = true;
+        });
+
+        Timer.Instance.AddTimerTask(4, () => { ShowLine.ClearTheLine(); });
+    }
+    
+
+
+
+    public void LoadLine2()
+    {
+        Timer.Instance.AddTimerTask(3, HaveADuDu);
+        Timer.Instance.AddTimerTask(7, CantSayTuTu);
+        Timer.Instance.AddTimerTask(13, CantChangeName);
+        Timer.Instance.AddTimerTask(17, NotHardUndsd);
+        Timer.Instance.AddTimerTask(22, Line2Over);
+    }
     private void HaveADuDu() { ShowLine.ShowTheLine(lineList2[0]); }
     private void CantSayTuTu() { ShowLine.ShowTheLine(lineList2[1]); }
     private void CantChangeName() { ShowLine.ShowTheLine(lineList2[2]); }
     private void NotHardUndsd() { ShowLine.ShowTheLine(lineList2[3]); }
+    private void Line2Over()
+    {
+        ShowLine.ClearTheLine();
+        BasicMovement.ableToMove = true;
+    }
+
+
+
+
+
 
     private void AboutToDie() { ShowLine.ShowTheLine(lineListGirl[0]); }
     private void DieManyYearsAgo() { ShowLine.ShowTheLine(lineListGirl[1]); }
