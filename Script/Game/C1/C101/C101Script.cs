@@ -8,6 +8,7 @@ public class C101Script : MonoBehaviour
 {
 
     public bool isLineTriggered = false;
+    public bool isGirlTriggered = false;
 
     // for test
     private void Start()
@@ -36,10 +37,16 @@ public class C101Script : MonoBehaviour
     };
 
     private static string[] lineListGirl = new string[] {
-        "我很快就要死了，渡渡",
-        "每个人都会死，只不过，大多数人几百万年后才会死",
-        "而我明天就可能死",
-        "我希望不是明天"
+        "女孩：我很快就要死了，渡渡",
+        "女孩：每个人都会死，只不过，大多数人几百万年后才会死",
+        "女孩：而我明天就可能死",
+        "女孩：我希望不是明天",
+        "..."
+    };
+
+    private static string[] lineListMine = new string[]
+    {
+        "我：也许我应该回自己的房间",
     };
 
     public void InitScene()
@@ -89,11 +96,11 @@ public class C101Script : MonoBehaviour
 
     public void LoadLine2()
     {
-        Timer.Instance.AddTimerTask(3, HaveADuDu);
-        Timer.Instance.AddTimerTask(7, CantSayTuTu);
-        Timer.Instance.AddTimerTask(13, CantChangeName);
+        Timer.Instance.AddTimerTask(2, HaveADuDu);
+        Timer.Instance.AddTimerTask(6, CantSayTuTu);
+        Timer.Instance.AddTimerTask(11, CantChangeName);
         Timer.Instance.AddTimerTask(17, NotHardUndsd);
-        Timer.Instance.AddTimerTask(22, Line2Over);
+        Timer.Instance.AddTimerTask(21, Line2Over);
     }
     private void HaveADuDu() { ShowLine.ShowTheLine(lineList2[0]); }
     private void CantSayTuTu() { ShowLine.ShowTheLine(lineList2[1]); }
@@ -109,9 +116,37 @@ public class C101Script : MonoBehaviour
 
 
 
-
+    public void LoadLine3_1()
+    {
+        Timer.Instance.AddTimerTask(2, AboutToDie);
+        Timer.Instance.AddTimerTask(6, DieManyYearsAgo);
+        Timer.Instance.AddTimerTask(11, DieNext);
+        Timer.Instance.AddTimerTask(15, HopeNotNext);
+        Timer.Instance.AddTimerTask(19, Line3Over);
+    }
+    public void LoadLine3_2()
+    {
+        Timer.Instance.AddTimerTask(1, GirlNthToSay);
+        Timer.Instance.AddTimerTask(3, Line3Over);
+    }
+    public void LoadLine3_3()
+    {
+        Timer.Instance.AddTimerTask(1, IShouldGo);
+        Timer.Instance.AddTimerTask(3, Line3Over);
+    }
     private void AboutToDie() { ShowLine.ShowTheLine(lineListGirl[0]); }
     private void DieManyYearsAgo() { ShowLine.ShowTheLine(lineListGirl[1]); }
     private void DieNext() { ShowLine.ShowTheLine(lineListGirl[2]); }
     private void HopeNotNext() { ShowLine.ShowTheLine(lineListGirl[3]); }
+
+    private void GirlNthToSay() { ShowLine.ShowTheLine(lineListGirl[4]); }
+
+    private void IShouldGo() { ShowLine.ShowTheLine(lineListMine[0]); }
+
+    private void Line3Over()
+    {
+        ShowLine.ClearTheLine();
+        BasicMovement.ableToMove = true;
+        GirlTrigger.isActived = false;
+    }
 }

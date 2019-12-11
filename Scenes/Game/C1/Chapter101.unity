@@ -913,6 +913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98a65364f18ef42ac553c44c787d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLineTriggered: 0
 --- !u!1 &1061222395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,6 +1755,8 @@ GameObject:
   - component: {fileID: 1406516103}
   - component: {fileID: 1406516105}
   - component: {fileID: 1406516104}
+  - component: {fileID: 1406516106}
+  - component: {fileID: 1406516107}
   m_Layer: 0
   m_Name: sittingGirl
   m_TagString: Untagged
@@ -1891,6 +1894,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1406516106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406516100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b232687d6364e41a0a2ab3208f2220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1406516107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406516100}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e98a65364f18ef42ac553c44c787d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLineTriggered: 0
 --- !u!1 &1446612952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2047,6 +2075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98a65364f18ef42ac553c44c787d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLineTriggered: 0
 --- !u!1 &1583781786
 GameObject:
   m_ObjectHideFlags: 0
