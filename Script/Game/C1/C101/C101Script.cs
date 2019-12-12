@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class C101Script : MonoBehaviour
 {
 
+    // for line one to only triggered one time ( story trigger )
     public bool isLineTriggered = false;
-    public bool isGirlTriggered = false;
 
     // for test
     private void Start()
     {
-        //InitScene();
+        InitScene();
     }
 
     private void Update()
@@ -147,6 +147,6 @@ public class C101Script : MonoBehaviour
     {
         ShowLine.ClearTheLine();
         BasicMovement.ableToMove = true;
-        GirlTrigger.isActived = false;
+        LineTrigger.isActived = false;
     }
 }

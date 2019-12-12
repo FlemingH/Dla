@@ -914,6 +914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLineTriggered: 0
+  isGirlTriggered: 0
 --- !u!1 &1061222395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,6 +1920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLineTriggered: 0
+  isGirlTriggered: 0
 --- !u!1 &1446612952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,6 +2078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLineTriggered: 0
+  isGirlTriggered: 0
 --- !u!1 &1583781786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,6 +2090,7 @@ GameObject:
   - component: {fileID: 1583781788}
   - component: {fileID: 1583781787}
   - component: {fileID: 1583781789}
+  - component: {fileID: 1583781791}
   - component: {fileID: 1583781790}
   m_Layer: 0
   m_Name: Room_table_collider
@@ -2193,7 +2197,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.020697027, y: -0.0728732}
+  m_Offset: {x: 0.020697027, y: -0.07259191}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.4649203, y: 0.25086504}
@@ -2204,8 +2208,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.59, y: 0.55165833}
+  m_Size: {x: 0.59, y: 0.5522208}
   m_EdgeRadius: 0
+--- !u!114 &1583781791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583781786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ee924970da1a046a9e1aa2343860d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1645535562
 GameObject:
   m_ObjectHideFlags: 0

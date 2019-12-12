@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GirlTrigger : MonoBehaviour
+public class GirlTrigger : LineTrigger
 {
 
-    // if is talking not allow to trigger
-    public static bool isActived = false;
-
-    private bool isTriggeable = false;
     private int triggerCount = 0;
 
+    // if can trigger and listen ctrl
     private void Update()
     {
         // first
@@ -46,17 +43,5 @@ public class GirlTrigger : MonoBehaviour
             c101Script.LoadLine3_3();
             triggerCount++;
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        ShowLine.ShowTheLine("点击 ctrl 互动");
-        isTriggeable = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        ShowLine.ClearTheLine();
-        isTriggeable = false;
     }
 }
