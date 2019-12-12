@@ -13,7 +13,7 @@ public class C101Script : MonoBehaviour
     // for test
     private void Start()
     {
-        InitScene();
+        //InitScene();
     }
 
     private void Update()

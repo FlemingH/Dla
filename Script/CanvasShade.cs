@@ -29,9 +29,6 @@ public class CanvasShade : MonoBehaviour
     private int lastMenu;
     private int lastLength;
 
-    // the scene need to stop invoke
-    private PrologueScript prologueScript;
-
     private void Awake()
     {
         if (instance == null)
@@ -54,8 +51,6 @@ public class CanvasShade : MonoBehaviour
         textQuitGameS = GameObject.Find("TextQuitGameS").GetComponent<Text>();
         textNoS = GameObject.Find("TextNoS").GetComponent<Text>();
         textYesS = GameObject.Find("TextYesS").GetComponent<Text>();
-
-        prologueScript = GetComponent<PrologueScript>();
 
         HideCanvas();
         HideMenu();
@@ -238,7 +233,7 @@ public class CanvasShade : MonoBehaviour
                     HideMenu();
                     HideCanvas();
 
-                    prologueScript.CancelInvoke();
+                    Timer.Instance.ClearAllTask();
 
                     SceneManager.LoadScene("StartMenuScene");
                     return;

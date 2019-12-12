@@ -70,4 +70,9 @@ public class Timer
         t.CallBack = callback;
         m_timerTask.Add(t);
     }
+
+    public void ClearAllTask()
+    {
+        m_timerTask = new List<TimerTask>();
+    }
 }
