@@ -11,10 +11,12 @@ public class CanvasShade : MonoBehaviour
     public static bool isCanvasMenuOpen;
     public static bool isControlKeyOpen;
     public static bool isConfirmQuitOpen;
+    public static bool isGameStoryOpen;
 
     private GameObject panelShadeMenu;
     private GameObject panelControlKey;
     private GameObject panelConfirmQuit;
+    private GameObject panelGameStory;
 
     private Text textContinueGameS;
     private Text textControlS;
@@ -22,6 +24,7 @@ public class CanvasShade : MonoBehaviour
     private Text textQuitGameS;
     private Text textNoS;
     private Text textYesS;
+    private Text textGameStory;
 
     private CanvasMenuMap menuMap;
     private Text lastText;
@@ -44,6 +47,7 @@ public class CanvasShade : MonoBehaviour
         panelShadeMenu = GameObject.Find("PanelShadeMenu");
         panelControlKey = GameObject.Find("PanelControlKey");
         panelConfirmQuit = GameObject.Find("PanelConfirmQuit");
+        panelGameStory = GameObject.Find("PanelGameStory");
 
         textContinueGameS = GameObject.Find("TextContinueGameS").GetComponent<Text>();
         textControlS = GameObject.Find("TextControlS").GetComponent<Text>();
@@ -51,11 +55,13 @@ public class CanvasShade : MonoBehaviour
         textQuitGameS = GameObject.Find("TextQuitGameS").GetComponent<Text>();
         textNoS = GameObject.Find("TextNoS").GetComponent<Text>();
         textYesS = GameObject.Find("TextYesS").GetComponent<Text>();
+        textGameStory = GameObject.Find("GameStoryText").GetComponent<Text>();
 
         HideCanvas();
         HideMenu();
         HideControlKey();
         HideConfirmQuit();
+        HideGameStory();
     }
 
     private void SwitchText()
@@ -122,6 +128,24 @@ public class CanvasShade : MonoBehaviour
     {
         isConfirmQuitOpen = false;
         panelConfirmQuit.SetActive(false);
+    }
+
+    public void ShowGameStory()
+    {
+        isGameStoryOpen = true;
+        panelGameStory.SetActive(true);
+    }
+
+    public void HideGameStory()
+    {
+        isGameStoryOpen = false;
+        panelGameStory.SetActive(false);
+    }
+
+    // for set story
+    public void SetGameStoryText(string story)
+    {
+        textGameStory.text = story;
     }
 
     private void Update()
@@ -266,11 +290,12 @@ public class CanvasShade : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             // quit canvas
-            if (menuMap.meun == 1)
+            if (isGameStoryOpen || menuMap.meun == 1)
             {
                 Time.timeScale = 1f;
                 HideMenu();
                 HideCanvas();
+                HideGameStory();
                 return;
             }
             
