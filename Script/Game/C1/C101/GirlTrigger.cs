@@ -16,7 +16,7 @@ public class GirlTrigger : LineTrigger
             triggerCount == 0) {
             isActived = true;
             C101Script c101Script = GetComponent<C101Script>();
-            BasicMovement.ableToMove = false;
+            C101ManMovement.ableToMove = false;
             ShowLine.ClearTheLine();
             c101Script.LoadLine3_1();
             triggerCount++;
@@ -27,7 +27,7 @@ public class GirlTrigger : LineTrigger
             (triggerCount > 0 && triggerCount <= 5)) {
             isActived = true;
             C101Script c101Script = GetComponent<C101Script>();
-            BasicMovement.ableToMove = false;
+            C101ManMovement.ableToMove = false;
             ShowLine.ClearTheLine();
             c101Script.LoadLine3_2();
             triggerCount++;
@@ -38,7 +38,7 @@ public class GirlTrigger : LineTrigger
             triggerCount > 5) {
             isActived = true;
             C101Script c101Script = GetComponent<C101Script>();
-            BasicMovement.ableToMove = false;
+            C101ManMovement.ableToMove = false;
             ShowLine.ClearTheLine();
             c101Script.LoadLine3_3();
             triggerCount++;

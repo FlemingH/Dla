@@ -24,7 +24,7 @@ public class RoomBookTrigger : LineTrigger
         if (CanvasShade.isGameStoryOpen && Input.GetKeyDown(KeyCode.Escape) && triggerCount == 1)
         {
             // turn down
-            BasicMovement.overrideDirection = 3;
+            C101ManMovement.overrideDirection = 3;
         }
 
         // first open the story

@@ -10,12 +10,6 @@ public class C101Script : MonoBehaviour
     // for line one to only triggered one time ( story trigger )
     public bool isLineTriggered = false;
 
-    // for test
-    private void Start()
-    {
-        //InitScene();
-    }
-
     private void Update()
     {
         Timer.Instance.UpdateTimer();
@@ -56,8 +50,8 @@ public class C101Script : MonoBehaviour
 
         ShowLine.ClearTheLine();
 
-        //BasicMovement.ableToMove = false;
-        //LoadLine1();
+        C101ManMovement.ableToMove = false;
+        LoadLine1();
     }
 
 
@@ -85,7 +79,7 @@ public class C101Script : MonoBehaviour
 
         Timer.Instance.AddTimerTask(2, () => {
             ShowLine.ShowTheLine("（按下 ← 移动）");
-            BasicMovement.ableToMove = true;
+            C101ManMovement.ableToMove = true;
         });
 
         Timer.Instance.AddTimerTask(4, () => { ShowLine.ClearTheLine(); });
@@ -109,7 +103,7 @@ public class C101Script : MonoBehaviour
     private void Line2Over()
     {
         ShowLine.ClearTheLine();
-        BasicMovement.ableToMove = true;
+        C101ManMovement.ableToMove = true;
     }
 
 
@@ -146,7 +140,7 @@ public class C101Script : MonoBehaviour
     private void Line3Over()
     {
         ShowLine.ClearTheLine();
-        BasicMovement.ableToMove = true;
+        C101ManMovement.ableToMove = true;
         LineTrigger.isActived = false;
     }
 }
