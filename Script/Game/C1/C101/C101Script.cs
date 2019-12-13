@@ -10,6 +10,13 @@ public class C101Script : MonoBehaviour
     // for line one to only triggered one time ( story trigger )
     public bool isLineTriggered = false;
 
+    // if all triggered then she go
+    public static bool isGirlTriggered = false;
+    public static bool isStoryTriggered = false;
+
+    // also need know if she come already
+    public static bool isSheCome = false;
+
     private void Update()
     {
         Timer.Instance.UpdateTimer();
@@ -117,6 +124,8 @@ public class C101Script : MonoBehaviour
         Timer.Instance.AddTimerTask(11, DieNext);
         Timer.Instance.AddTimerTask(15, HopeNotNext);
         Timer.Instance.AddTimerTask(19, Line3Over);
+
+        isGirlTriggered = true;
     }
     public void LoadLine3_2()
     {
@@ -142,5 +151,18 @@ public class C101Script : MonoBehaviour
         ShowLine.ClearTheLine();
         C101ManMovement.ableToMove = true;
         LineTrigger.isActived = false;
+
+        // let she come first handle here or RoomBookTrigger
+        if (IsLineAboveOver() && !isSheCome)
+        {
+            Debug.Log("she come");
+            isSheCome = true;
+        }
+    }
+
+
+    public static bool IsLineAboveOver()
+    {
+        return isGirlTriggered && isStoryTriggered;
     }
 }

@@ -23,8 +23,15 @@ public class RoomBookTrigger : LineTrigger
         // first close the story trigger the next story
         if (CanvasShade.isGameStoryOpen && Input.GetKeyDown(KeyCode.Escape) && triggerCount == 1)
         {
-            // turn down
-            C101ManMovement.overrideDirection = 3;
+            // let she come first handle here or c101script
+            if (C101Script.IsLineAboveOver() && !C101Script.isSheCome)
+            {
+                Debug.Log("she come");
+                C101Script.isSheCome = true;
+
+                // turn down
+                C101ManMovement.overrideDirection = 3;
+            }
         }
 
         // first open the story
@@ -34,6 +41,9 @@ public class RoomBookTrigger : LineTrigger
 
             if(!CanvasShade.isCanvasOpen)
             {
+
+                C101Script.isStoryTriggered = true;
+
                 Time.timeScale = 0;
                 CanvasShade.instance.ShowCanvas();
                 CanvasShade.instance.SetGameStoryText(story);
