@@ -2775,6 +2775,8 @@ GameObject:
   - component: {fileID: 2095495663}
   - component: {fileID: 2095495665}
   - component: {fileID: 2095495666}
+  - component: {fileID: 2095495667}
+  - component: {fileID: 2095495668}
   m_Layer: 0
   m_Name: Room_bed_collider
   m_TagString: Untagged
@@ -2893,3 +2895,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8681493, y: 0.77793765}
   m_EdgeRadius: 0
+--- !u!114 &2095495667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095495662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a53f48f554d6741996aa06005aa127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2095495668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095495662}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e98a65364f18ef42ac553c44c787d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLineTriggered: 0
