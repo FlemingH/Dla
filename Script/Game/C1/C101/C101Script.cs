@@ -56,8 +56,8 @@ public class C101Script : MonoBehaviour
 
         ShowLine.ClearTheLine();
 
-        BasicMovement.ableToMove = false;
-        LoadLine1();
+        //BasicMovement.ableToMove = false;
+        //LoadLine1();
     }
 
 

@@ -19,10 +19,17 @@ public class RoomBookTrigger : LineTrigger
 
     private void Update()
     {
-        // first
+
+        // first close the story trigger the next story
+        if (CanvasShade.isGameStoryOpen && Input.GetKeyDown(KeyCode.Escape) && triggerCount == 1)
+        {
+            // turn down
+            BasicMovement.overrideDirection = 3;
+        }
+
+        // first open the story
         if (isTriggeable && !isActived &&
-            (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)) &&
-            triggerCount == 0)
+            (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)))
         {
 
             if(!CanvasShade.isCanvasOpen)
@@ -32,9 +39,9 @@ public class RoomBookTrigger : LineTrigger
                 CanvasShade.instance.SetGameStoryText(story);
                 CanvasShade.instance.ShowGameStory();
                 ShowLine.ClearTheLine();
+                triggerCount++;
             }
 
         }
-
     }
 }

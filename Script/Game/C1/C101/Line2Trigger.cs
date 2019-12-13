@@ -6,6 +6,8 @@ public class Line2Trigger : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        return;
+
         C101Script c101Script = GetComponent<C101Script>();
 
         // only tigger once
