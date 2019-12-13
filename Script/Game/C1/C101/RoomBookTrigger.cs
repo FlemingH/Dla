@@ -26,11 +26,7 @@ public class RoomBookTrigger : LineTrigger
             // let she come first handle here or c101script
             if (C101Script.IsLineAboveOver() && !C101Script.isSheCome)
             {
-                Debug.Log("she come");
-                C101Script.isSheCome = true;
-
-                // turn down
-                C101ManMovement.overrideDirection = 3;
+                C101Script.LetSheCome("turn down");
             }
         }
 

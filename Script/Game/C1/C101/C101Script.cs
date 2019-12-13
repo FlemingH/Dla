@@ -42,12 +42,17 @@ public class C101Script : MonoBehaviour
         "女孩：每个人都会死，只不过，大多数人几百万年后才会死",
         "女孩：而我明天就可能死",
         "女孩：我希望不是明天",
-        "..."
+        "...",
+        "女孩：是她！她来了！"
     };
 
     private static string[] lineListMine = new string[]
     {
         "我：也许我应该回自己的房间",
+        "我：是她？",
+        "每天晚上都有个穿着厚厚的灰色针织毛衣的女人在医院的走廊里巡逻",
+        "她捧着一个文件夹",
+        "里面写着我们所有人的名字"
     };
 
     public void InitScene()
@@ -155,14 +160,65 @@ public class C101Script : MonoBehaviour
         // let she come first handle here or RoomBookTrigger
         if (IsLineAboveOver() && !isSheCome)
         {
-            Debug.Log("she come");
-            isSheCome = true;
+            LetSheCome("turn up");
         }
     }
+
+
+
 
 
     public static bool IsLineAboveOver()
     {
         return isGirlTriggered && isStoryTriggered;
+    }
+    private static void GirlSaySheCome() { ShowLine.ShowTheLine(lineListGirl[5]); }
+    private static void ISayIsShe() { ShowLine.ShowTheLine(lineListMine[1]); }
+    private static void EveryNightSheCome() { ShowLine.ShowTheLine(lineListMine[2]); }
+    private static void SheHasAFile() { ShowLine.ShowTheLine(lineListMine[3]); }
+    private static void SheHasAllName() { ShowLine.ShowTheLine(lineListMine[4]); }
+    private static void Line4Over()
+    {
+        C101ManMovement.ableToMove = true;
+        ShowLine.ClearTheLine();
+        isSheCome = true;
+
+        // Time to go bed
+        Timer.Instance.AddTimerTask(4, () => {
+            ShowLine.ShowTheLine("是时候回去睡觉了");
+        });
+        Timer.Instance.AddTimerTask(7, () => {
+            ShowLine.ClearTheLine();
+        });
+    }
+    public static void LoadLine4(string dir)
+    {
+        Timer.Instance.AddTimerTask(2, GirlSaySheCome);
+        Timer.Instance.AddTimerTask(2, () => {
+            
+            if (string.Equals(dir, "turn up"))
+            {
+                // turn up
+                C101ManMovement.overrideDirection = 1;
+            } else
+            {
+                // turn down
+                C101ManMovement.overrideDirection = 3;
+            }
+
+        });
+        Timer.Instance.AddTimerTask(5, ISayIsShe);
+        Timer.Instance.AddTimerTask(9, EveryNightSheCome);
+        Timer.Instance.AddTimerTask(14, SheHasAFile);
+        Timer.Instance.AddTimerTask(16, SheHasAllName);
+        Timer.Instance.AddTimerTask(21, Line4Over);
+    }
+
+
+    public static void LetSheCome(string dir)
+    {
+        C101ManMovement.ableToMove = false;
+        ShowLine.ClearTheLine();
+        LoadLine4(dir);
     }
 }
