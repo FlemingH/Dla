@@ -185,16 +185,19 @@ public class C101Script : MonoBehaviour
 
         // Time to go bed
         Timer.Instance.AddTimerTask(4, () => {
+            ShowLine.ShowTheLine("...");
+        });
+        Timer.Instance.AddTimerTask(6, () => {
             ShowLine.ShowTheLine("是时候回去睡觉了");
         });
-        Timer.Instance.AddTimerTask(7, () => {
+        Timer.Instance.AddTimerTask(10, () => {
             ShowLine.ClearTheLine();
         });
     }
     public static void LoadLine4(string dir)
     {
         Timer.Instance.AddTimerTask(2, GirlSaySheCome);
-        Timer.Instance.AddTimerTask(2, () => {
+        Timer.Instance.AddTimerTask(3, () => {
             
             if (string.Equals(dir, "turn up"))
             {
@@ -206,12 +209,22 @@ public class C101Script : MonoBehaviour
                 C101ManMovement.overrideDirection = 3;
             }
 
+            // let woman walk
+            C101WomanMovement.letHerGo = true;
         });
         Timer.Instance.AddTimerTask(5, ISayIsShe);
-        Timer.Instance.AddTimerTask(9, EveryNightSheCome);
+        Timer.Instance.AddTimerTask(8, EveryNightSheCome);
         Timer.Instance.AddTimerTask(14, SheHasAFile);
         Timer.Instance.AddTimerTask(16, SheHasAllName);
         Timer.Instance.AddTimerTask(21, Line4Over);
+
+        // woman turn up then continue walk
+        Timer.Instance.AddTimerTask(10f, () => {
+            C101WomanMovement.walkOrTurnUp = 0;
+        });
+        Timer.Instance.AddTimerTask(14f, () => {
+            C101WomanMovement.walkOrTurnUp = 1;
+        });
     }
 
 
