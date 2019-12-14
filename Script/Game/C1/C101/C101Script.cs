@@ -74,11 +74,14 @@ public class C101Script : MonoBehaviour
     private void LoadLine1()
     {
         Timer.Instance.AddTimerTask(4, MetHer);
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(8, WantRed);
         Timer.Instance.AddTimerTask(14, PrintRed);
+        Timer.Instance.AddTimerTask(17, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(18, Use20Box);
+        Timer.Instance.AddTimerTask(21, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(22, GiveHerPrint);
-        Timer.Instance.AddTimerTask(26, Line1Over);
+        Timer.Instance.AddTimerTask(28, Line1Over);
     }
     private void MetHer() { ShowLine.ShowTheLine(lineList1[0]); }
     private void WantRed() { ShowLine.ShowTheLine(lineList1[1]); }
@@ -89,12 +92,12 @@ public class C101Script : MonoBehaviour
     {
         ShowLine.ClearTheLine();
 
-        Timer.Instance.AddTimerTask(2, () => {
+        Timer.Instance.AddTimerTask(4, () => {
             ShowLine.ShowTheLine("（按下 ← 移动）");
             C101ManMovement.ableToMove = true;
         });
 
-        Timer.Instance.AddTimerTask(4, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
     }
     
 
@@ -103,8 +106,10 @@ public class C101Script : MonoBehaviour
     public void LoadLine2()
     {
         Timer.Instance.AddTimerTask(2, HaveADuDu);
+        Timer.Instance.AddTimerTask(5, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(6, CantSayTuTu);
         Timer.Instance.AddTimerTask(11, CantChangeName);
+        Timer.Instance.AddTimerTask(16, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(17, NotHardUndsd);
         Timer.Instance.AddTimerTask(21, Line2Over);
     }
@@ -125,10 +130,13 @@ public class C101Script : MonoBehaviour
     public void LoadLine3_1()
     {
         Timer.Instance.AddTimerTask(2, AboutToDie);
+        Timer.Instance.AddTimerTask(5, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(6, DieManyYearsAgo);
+        Timer.Instance.AddTimerTask(10, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(11, DieNext);
-        Timer.Instance.AddTimerTask(15, HopeNotNext);
-        Timer.Instance.AddTimerTask(19, Line3Over);
+        Timer.Instance.AddTimerTask(15, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(16, HopeNotNext);
+        Timer.Instance.AddTimerTask(21, Line3Over);
 
         isGirlTriggered = true;
     }
@@ -212,11 +220,15 @@ public class C101Script : MonoBehaviour
             // let woman walk
             C101WomanMovement.letHerGo = true;
         });
+        Timer.Instance.AddTimerTask(4, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(5, ISayIsShe);
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(8, EveryNightSheCome);
-        Timer.Instance.AddTimerTask(14, SheHasAFile);
-        Timer.Instance.AddTimerTask(16, SheHasAllName);
-        Timer.Instance.AddTimerTask(21, Line4Over);
+        Timer.Instance.AddTimerTask(14, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(16, SheHasAFile);
+        Timer.Instance.AddTimerTask(19, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(20, SheHasAllName);
+        Timer.Instance.AddTimerTask(23, Line4Over);
 
         // woman turn up then continue walk
         Timer.Instance.AddTimerTask(10f, () => {
