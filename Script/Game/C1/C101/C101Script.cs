@@ -231,10 +231,10 @@ public class C101Script : MonoBehaviour
         Timer.Instance.AddTimerTask(23, Line4Over);
 
         // woman turn up then continue walk
-        Timer.Instance.AddTimerTask(10f, () => {
+        Timer.Instance.AddTimerTask(14f, () => {
             C101WomanMovement.walkOrTurnUp = 0;
         });
-        Timer.Instance.AddTimerTask(14f, () => {
+        Timer.Instance.AddTimerTask(18f, () => {
             C101WomanMovement.walkOrTurnUp = 1;
         });
     }
@@ -245,5 +245,13 @@ public class C101Script : MonoBehaviour
         C101ManMovement.ableToMove = false;
         ShowLine.ClearTheLine();
         LoadLine4(dir);
+    }
+
+    public static void LoadChapter102()
+    {
+        if (SceneManager.GetActiveScene().name == "Chapter101")
+        {
+            SceneManager.LoadScene("Chapter102");
+        }
     }
 }

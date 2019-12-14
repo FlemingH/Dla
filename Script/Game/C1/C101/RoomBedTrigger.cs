@@ -29,7 +29,7 @@ public class RoomBedTrigger : LineTrigger
         if (isTriggeable && C101Script.isSheCome &&
             (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)))
         {
-            Debug.Log("End");
+            C101Script.LoadChapter102();
         }
     }
 }

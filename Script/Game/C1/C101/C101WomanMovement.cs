@@ -15,7 +15,7 @@ public class C101WomanMovement : MonoBehaviour
         {
             animator.SetInteger("WalkOrTurnUp", 1);
             Vector3 movement = new Vector3(1.0f, 0.0f, 0.0f);
-            transform.position += movement * Time.deltaTime * 150;
+            transform.position += movement * Time.deltaTime * 100;
 
         } else if (walkOrTurnUp == 0)
         {
