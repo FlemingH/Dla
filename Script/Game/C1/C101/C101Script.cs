@@ -57,6 +57,12 @@ public class C101Script : MonoBehaviour
 
     public void InitScene()
     {
+        isLineTriggered = false;
+        isGirlTriggered = false;
+        isStoryTriggered = false;
+        isSheCome = false;
+        C101WomanMovement.letHerGo = false;
+
         ShowLine.ClearTheLine();
 
         C101ManMovement.ableToMove = false;

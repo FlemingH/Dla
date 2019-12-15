@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     // run when scence loaded
     private void OnSceneLoaded(Scene scence, LoadSceneMode mod)
     {
+        ShowLine.ClearTheLine();
         if (scence.name == "StartMenuScene")
         {
             startMenuManager = GetComponent<StartMenuManager>();
