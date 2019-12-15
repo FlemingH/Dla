@@ -24,13 +24,13 @@ public class C102Script : MonoBehaviour
     private void LoadBlackLine1()
     {
         ShowLine.ShowTheBlackLine("");
-        Timer.Instance.AddTimerTask(2, IMetHer);
-        Timer.Instance.AddTimerTask(6, () => { ShowLine.ShowTheBlackLine(""); });
-        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheBlackLine(); });
-        Timer.Instance.AddTimerTask(10, SheNextToMe);
-        Timer.Instance.AddTimerTask(13, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(14, ImStuck);
-        Timer.Instance.AddTimerTask(19, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(4, IMetHer);
+        Timer.Instance.AddTimerTask(8, () => { ShowLine.ShowTheBlackLine(""); });
+        Timer.Instance.AddTimerTask(9, () => { ShowLine.ClearTheBlackLine(); });
+        Timer.Instance.AddTimerTask(12, SheNextToMe);
+        Timer.Instance.AddTimerTask(15, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(16, ImStuck);
+        Timer.Instance.AddTimerTask(21, () => { ShowLine.ClearTheLine(); });
     }
     private void IMetHer() { ShowLine.ShowTheBlackLine(lineList1[0]); }
     private void SheNextToMe() { ShowLine.ShowTheLine(lineList1[1]); }

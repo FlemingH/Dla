@@ -9,12 +9,12 @@ public class C101ManMovement : BasicMovement
 
     public Rigidbody2D rb;
 
-    public static bool ableToMove = true;
+    public static bool ableToMove = false;
     public static int overrideDirection = -1;
 
     public static void ResetScript()
     {
-        ableToMove = true;
+        ableToMove = false;
         overrideDirection = -1;
     }
 

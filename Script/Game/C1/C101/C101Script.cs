@@ -194,10 +194,10 @@ public class C101Script : MonoBehaviour
         Timer.Instance.AddTimerTask(4, () => {
             ShowLine.ShowTheLine("...");
         });
-        Timer.Instance.AddTimerTask(6, () => {
+        Timer.Instance.AddTimerTask(8, () => {
             ShowLine.ShowTheLine("是时候回去睡觉了");
         });
-        Timer.Instance.AddTimerTask(10, () => {
+        Timer.Instance.AddTimerTask(14, () => {
             ShowLine.ClearTheLine();
         });
     }
