@@ -57,9 +57,6 @@ public class C101Script : MonoBehaviour
 
     public void InitScene()
     {
-        ShowLine.linePanel = GameObject.Find("PanelShowingLine");
-        ShowLine.uiLine = GameObject.Find("LineShowing").GetComponent<Text>();
-
         ShowLine.ClearTheLine();
 
         C101ManMovement.ableToMove = false;

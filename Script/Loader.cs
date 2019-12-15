@@ -7,6 +7,7 @@ public class Loader : MonoBehaviour
 
     public GameObject gameManager;
     public GameObject canvasShade;
+    public GameObject canvasShowLine;
 
     private void Awake()
     {
@@ -17,6 +18,10 @@ public class Loader : MonoBehaviour
         if (CanvasShade.instance == null)
         {
             Instantiate(canvasShade);
+        }
+        if (ShowLine.instance == null)
+        {
+            Instantiate(canvasShowLine);
         }
     }
 }

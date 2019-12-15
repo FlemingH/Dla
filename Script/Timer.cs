@@ -47,7 +47,9 @@ public class Timer
             {
                 continue;
             }
-            if (t.RealTime < Time.realtimeSinceStartup)
+
+            // using Time.time not realtimeSinceStartup to fix pause cant stop the line
+            if (t.RealTime < Time.time)
             {
                 if (null != t.CallBack)
                 {
@@ -66,7 +68,7 @@ public class Timer
         }
         TimerTask t = new TimerTask();
         t.Time = time;
-        t.RealTime = Time.realtimeSinceStartup + time;
+        t.RealTime = Time.time + time;
         t.CallBack = callback;
         m_timerTask.Add(t);
     }

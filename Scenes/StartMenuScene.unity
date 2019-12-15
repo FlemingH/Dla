@@ -625,6 +625,8 @@ MonoBehaviour:
     type: 3}
   canvasShade: {fileID: 5573252547403870644, guid: f6cc19fd72f08ed448cd59e9d2746121,
     type: 3}
+  canvasShowLine: {fileID: 6387530720266541654, guid: 760903d57df1c1b4ab196575f29542ce,
+    type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
