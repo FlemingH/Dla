@@ -5,7 +5,12 @@ using UnityEngine;
 public class GirlTrigger : LineTrigger
 {
 
-    private int triggerCount = 0;
+    private static int triggerCount = 0;
+
+    public static void ResetScript()
+    {
+        triggerCount = 0;
+    }
 
     // if can trigger and listen ctrl
     private void Update()

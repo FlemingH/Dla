@@ -5,7 +5,12 @@ using UnityEngine;
 public class RoomBookTrigger : LineTrigger
 {
 
-    private int triggerCount = 0;
+    private static int triggerCount = 0;
+
+    public static void ResetScript()
+    {
+        triggerCount = 0;
+    }
 
     private static string story = 
         "今天是圣诞前夜，当你醒来的时候，雪很可能已经化了。赫尔辛堡的雪总是化的很快。" +

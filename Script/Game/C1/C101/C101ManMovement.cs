@@ -12,6 +12,12 @@ public class C101ManMovement : BasicMovement
     public static bool ableToMove = true;
     public static int overrideDirection = -1;
 
+    public static void ResetScript()
+    {
+        ableToMove = true;
+        overrideDirection = -1;
+    }
+
     void Update()
     {
         Vector3 movement = new Vector3(0.0f, 0.0f, 0.0f);

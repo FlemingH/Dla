@@ -9,6 +9,12 @@ public class C101WomanMovement : MonoBehaviour
 
     public Animator animator;
 
+    public static void ResetScript()
+    {
+        letHerGo = false;
+        walkOrTurnUp = 1;
+    }
+
     void Update()
     {
         if (letHerGo && walkOrTurnUp == 1)
