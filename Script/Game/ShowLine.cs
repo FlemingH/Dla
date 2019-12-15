@@ -8,6 +8,8 @@ public class ShowLine : MonoBehaviour
     public static ShowLine instance = null;
     public static GameObject linePanel;
     public static Text uiLine;
+    public static GameObject blackLinePanel;
+    public static Text blackUiLine;
 
     private void Awake()
     {
@@ -24,6 +26,9 @@ public class ShowLine : MonoBehaviour
 
         linePanel = GameObject.Find("ShowLine");
         uiLine = GameObject.Find("LineShowing").GetComponent<Text>();
+
+        blackLinePanel = GameObject.Find("PanelBlackLine");
+        blackUiLine = GameObject.Find("BlackLineShowing").GetComponent<Text>();
     }
 
     public static void ShowTheLine (string words)
@@ -38,4 +43,15 @@ public class ShowLine : MonoBehaviour
         linePanel.SetActive(false);
     }
 
+    public static void ShowTheBlackLine (string words)
+    {
+        blackUiLine.text = words;
+        blackLinePanel.SetActive(true);
+    }
+
+    public static void ClearTheBlackLine ()
+    {
+        blackUiLine.text = "";
+        blackLinePanel.SetActive(false);
+    }
 }
