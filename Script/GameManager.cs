@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
         ShowLine.ClearTheLine();
         ShowLine.ClearTheBlackLine();
+        ShowLine.ClearTheChooseLine();
 
         if (scence.name == "StartMenuScene")
         {

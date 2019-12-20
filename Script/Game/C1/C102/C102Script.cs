@@ -11,14 +11,51 @@ public class C102Script : MonoBehaviour
         "我肩膀脱臼，整个身体被困在一堆标价一百五十万克朗的钢材和所谓的“高科技”里"
     };
 
+    private static string[] chooseLineList1 = new string[] {
+        "带别人走吧！我能找到替死鬼！",
+        "我认识你！我知道你是谁！"
+    };
+    private static string[] chooseLine1Ans1List = new string[] {
+        "没有这种规矩。",
+        "况且我说了也不算，我只是个负责物流和运输的。"
+    };
+    private static string[] chooseLine1Ans2List = new string[] {
+        "不是你想的那样。",
+        "况且我说了也不算，我只是个负责物流和运输的。"
+    };
+
+
     private void Update()
     {
         Timer.Instance.UpdateTimer();
+
+        ListenTheLineChoose();
     }
 
     public void InitScene()
     {
         LoadBlackLine1();
+    }
+
+    private void ListenTheLineChoose()
+    {
+        if (ShowLine.hasResult)
+        {
+            if (ShowLine.curChooseId == "C102-1")
+            {
+                if (ShowLine.curChoose == 0)
+                {
+                    Debug.Log(chooseLine1Ans1List[0]);
+                    Debug.Log(chooseLine1Ans1List[1]);
+                }
+                if (ShowLine.curChoose == 1)
+                {
+                    Debug.Log(chooseLine1Ans2List[0]);
+                    Debug.Log(chooseLine1Ans2List[1]);
+                }
+                ShowLine.ClearTheChooseLine();
+            }
+        }
     }
 
     private void LoadBlackLine1()
@@ -31,6 +68,13 @@ public class C102Script : MonoBehaviour
         Timer.Instance.AddTimerTask(15, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(16, ImStuck);
         Timer.Instance.AddTimerTask(21, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(23, () => {
+            ShowLine.SetChooseLine(
+                chooseLineList1[0],
+                chooseLineList1[1],
+                "C102-1"
+            );
+        });
     }
     private void IMetHer() { ShowLine.ShowTheBlackLine(lineList1[0]); }
     private void SheNextToMe() { ShowLine.ShowTheLine(lineList1[1]); }
