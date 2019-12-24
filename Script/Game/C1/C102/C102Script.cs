@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class C102Script : MonoBehaviour
 {
@@ -132,9 +133,18 @@ public class C102Script : MonoBehaviour
         Timer.Instance.AddTimerTask(6, IHeatRelat);
         Timer.Instance.AddTimerTask(10, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(11, GiveMeFile);
-        Timer.Instance.AddTimerTask(16, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(15, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(18, () => { LoadChapter103(); });
     }
     private void Aiiiii() { ShowLine.ShowTheLine(chooseLine2AnsList[0]); }
     private void IHeatRelat() { ShowLine.ShowTheLine(chooseLine2AnsList[1]); }
     private void GiveMeFile() { ShowLine.ShowTheLine(chooseLine2AnsList[2]); }
+
+    private void LoadChapter103()
+    {
+        if (SceneManager.GetActiveScene().name == "Chapter102")
+        {
+            SceneManager.LoadScene("Chapter103");
+        }
+    }
 }

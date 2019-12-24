@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private PrologueScript prologueScript;
     private C101Script c101Script;
     private C102Script c102Script;
+    private C103Script c103Script;
 
     private DataList dataList;
 
@@ -64,6 +65,13 @@ public class GameManager : MonoBehaviour
             RewriteDataList("Chapter102");
             c102Script = GetComponent<C102Script>();
             c102Script.InitScene();
+            return;
+        }
+        if (scence.name == "Chapter103")
+        {
+            RewriteDataList("Chapter103");
+            c103Script = GetComponent<C103Script>();
+            c103Script.InitScene();
             return;
         }
     }
