@@ -25,12 +25,12 @@ public class C102Script : MonoBehaviour
         "我认识你！我知道你是谁！"
     };
     private static string[] chooseLine1Ans1List = new string[] {
-        "没有这种规矩",
-        "况且我说了也不算，我只是个负责物流和运输的"
+        "她：没有这种规矩",
+        "她：况且我说了也不算，我只是个负责物流和运输的"
     };
     private static string[] chooseLine1Ans2List = new string[] {
-        "不是你想的那样",
-        "我只是个负责物流和运输的"
+        "她：不是你想的那样",
+        "她：我只是个负责物流和运输的"
     };
 
     private static string[] chooseLineList2 = new string[] {
@@ -38,8 +38,8 @@ public class C102Script : MonoBehaviour
         "你对谁负责？上帝还是魔鬼？",
     };
     private static string[] chooseLine2AnsList = new string[] {
-        "我最讨厌搞关系，只喜欢埋头做事",
-        "把那张文件还给我"
+        "她：我最讨厌搞关系，只喜欢埋头做事",
+        "她：请把那张文件还给我"
     };
 
     private void Update()
@@ -156,15 +156,16 @@ public class C102Script : MonoBehaviour
     {
         chooseC101_2 = ansId;
 
-        Timer.Instance.AddTimerTask(5, () => { ShowLine.ShowTheBlackLine(""); });
-        Timer.Instance.AddTimerTask(6, () => { ShowLine.ShowTheBlackLine("她似乎隐瞒了什么"); });
-        Timer.Instance.AddTimerTask(10, () => { ShowLine.ClearTheBlackLine(); });
+        Timer.Instance.AddTimerTask(4, () => { ShowLine.ShowTheLine("..."); });
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ShowTheBlackLine(""); });
+        Timer.Instance.AddTimerTask(8, () => { ShowLine.ShowTheBlackLine("她似乎隐瞒了什么"); });
+        Timer.Instance.AddTimerTask(12, () => { ShowLine.ClearTheBlackLine(); });
 
-        Timer.Instance.AddTimerTask(12, IHeatRelat);
-        Timer.Instance.AddTimerTask(16, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(17, GiveMeFile);
-        Timer.Instance.AddTimerTask(20, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(24, () => { LoadChapter103(); });
+        Timer.Instance.AddTimerTask(14, IHeatRelat);
+        Timer.Instance.AddTimerTask(19, GiveMeFile);
+        Timer.Instance.AddTimerTask(22, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(26, () => { LoadChapter103(); });
     }
     private void IHeatRelat() { ShowLine.ShowTheLine(chooseLine2AnsList[0]); }
     private void GiveMeFile() { ShowLine.ShowTheLine(chooseLine2AnsList[1]); }
