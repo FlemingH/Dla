@@ -34,7 +34,7 @@ public class C101Script : MonoBehaviour
         "她有一个毛绒玩具，一只兔子。她叫它“渡渡”",
         "她之所以叫它“渡渡”，是因为发不准“兔兔”的音",
         "可是她真的想叫它“渡渡”，因为它的名字本来就叫“渡渡”，不能随便给它改名",
-        "哪怕对于成年人来说，这个道理也不难理解，对不对？"
+        "哪怕对于成年人来说，这个道理也不难理解"
     };
 
     private static string[] lineListGirl = new string[] {
@@ -73,14 +73,14 @@ public class C101Script : MonoBehaviour
     private void LoadLine1()
     {
         Timer.Instance.AddTimerTask(4, MetHer);
-        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(8, WantRed);
-        Timer.Instance.AddTimerTask(14, PrintRed);
-        Timer.Instance.AddTimerTask(17, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(18, Use20Box);
+        Timer.Instance.AddTimerTask(9, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(10, WantRed);
+        Timer.Instance.AddTimerTask(17, PrintRed);
         Timer.Instance.AddTimerTask(21, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(22, GiveHerPrint);
-        Timer.Instance.AddTimerTask(28, Line1Over);
+        Timer.Instance.AddTimerTask(23, Use20Box);
+        Timer.Instance.AddTimerTask(26, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(27, GiveHerPrint);
+        Timer.Instance.AddTimerTask(33, Line1Over);
     }
     private void MetHer() { ShowLine.ShowTheLine(lineList1[0]); }
     private void WantRed() { ShowLine.ShowTheLine(lineList1[1]); }
@@ -105,12 +105,12 @@ public class C101Script : MonoBehaviour
     public void LoadLine2()
     {
         Timer.Instance.AddTimerTask(2, HaveADuDu);
-        Timer.Instance.AddTimerTask(5, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(6, CantSayTuTu);
-        Timer.Instance.AddTimerTask(11, CantChangeName);
-        Timer.Instance.AddTimerTask(16, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(17, NotHardUndsd);
-        Timer.Instance.AddTimerTask(21, Line2Over);
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(8, CantSayTuTu);
+        Timer.Instance.AddTimerTask(13, CantChangeName);
+        Timer.Instance.AddTimerTask(29, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(20, NotHardUndsd);
+        Timer.Instance.AddTimerTask(24, Line2Over);
     }
     private void HaveADuDu() { ShowLine.ShowTheLine(lineList2[0]); }
     private void CantSayTuTu() { ShowLine.ShowTheLine(lineList2[1]); }
@@ -131,11 +131,11 @@ public class C101Script : MonoBehaviour
         Timer.Instance.AddTimerTask(2, AboutToDie);
         Timer.Instance.AddTimerTask(5, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(6, DieManyYearsAgo);
-        Timer.Instance.AddTimerTask(10, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(11, DieNext);
-        Timer.Instance.AddTimerTask(15, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(16, HopeNotNext);
-        Timer.Instance.AddTimerTask(21, Line3Over);
+        Timer.Instance.AddTimerTask(12, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(13, DieNext);
+        Timer.Instance.AddTimerTask(17, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(18, HopeNotNext);
+        Timer.Instance.AddTimerTask(22, Line3Over);
 
         isGirlTriggered = true;
     }
@@ -191,13 +191,13 @@ public class C101Script : MonoBehaviour
         isSheCome = true;
 
         // Time to go bed
-        Timer.Instance.AddTimerTask(4, () => {
+        Timer.Instance.AddTimerTask(10, () => {
             ShowLine.ShowTheLine("...");
         });
-        Timer.Instance.AddTimerTask(8, () => {
+        Timer.Instance.AddTimerTask(14, () => {
             ShowLine.ShowTheLine("是时候回去睡觉了");
         });
-        Timer.Instance.AddTimerTask(14, () => {
+        Timer.Instance.AddTimerTask(20, () => {
             ShowLine.ClearTheLine();
         });
     }
