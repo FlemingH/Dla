@@ -43,6 +43,8 @@ public class StartMenuManager : MonoBehaviour
     private Text lastText;
     private Text curText;
 
+    private ChapterName chapterName;
+
     private void InitMenuObject ()
     {
         panelNewGame = GameObject.Find("PanelNewGame");
@@ -71,9 +73,11 @@ public class StartMenuManager : MonoBehaviour
 
         textQuitConfirm = GameObject.Find("TextQuitConfirm").GetComponent<Text>();
 
-        textFile1.text = (curUserData1.progress != "") ? curUserData1.progress : "空";
-        textFile2.text = (curUserData2.progress != "") ? curUserData2.progress : "空"; ;
-        textFile3.text = (curUserData3.progress != "") ? curUserData3.progress : "空"; ;
+        if (chapterName == null) chapterName = new ChapterName();
+
+        textFile1.text = (curUserData1.progress != "") ? ChapterName.GetChapterName(curUserData1.progress) : "空";
+        textFile2.text = (curUserData2.progress != "") ? ChapterName.GetChapterName(curUserData2.progress) : "空";
+        textFile3.text = (curUserData3.progress != "") ? ChapterName.GetChapterName(curUserData3.progress) : "空";
 
     }
 

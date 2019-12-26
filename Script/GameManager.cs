@@ -155,3 +155,21 @@ public class UserData
 {
     public string progress;
 }
+
+public class ChapterName
+{
+    public static Dictionary<string, string> nameMap = new Dictionary<string, string>();
+
+    public ChapterName()
+    {
+        nameMap.Add("PrologueScene", "序章");
+        nameMap.Add("Chapter101", "医院，七天前");
+        nameMap.Add("Chapter102", "车祸，疑惑");
+        nameMap.Add("Chapter103", "消防通道，六天前");
+    }
+
+    public static string GetChapterName(string code)
+    {
+        return nameMap[code];
+    }
+}
