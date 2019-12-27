@@ -197,6 +197,11 @@ public class StartMenuManager : MonoBehaviour
             {
                 if (menuMap.length == 1)
                 {
+                    if (JsonUtility.FromJson<UserData>(curDataList.data1).progress == "")
+                    {
+                        CreateTheNewGameAndRewriteFile();
+                    }
+
                     SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data1).progress);
                 }
                 if (menuMap.length == 2)
@@ -459,6 +464,22 @@ public class StartMenuManager : MonoBehaviour
         }
 
         return textNewGame;
+    }
+
+    private void CreateTheNewGameAndRewriteFile()
+    {
+        curDataList = new DataList
+        {
+            data1 = "{\"progress\": \"PrologueScene\"}",
+            data2 = "{\"progress\": \"\"}",
+            data3 = "{\"progress\": \"\"}"
+        };
+
+        curUserData1 = JsonUtility.FromJson<UserData>(curDataList.data1);
+        curUserData2 = JsonUtility.FromJson<UserData>(curDataList.data2);
+        curUserData3 = JsonUtility.FromJson<UserData>(curDataList.data3);
+
+        PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
     }
 
     private void NewGameRewriteFileAndLoadScene()

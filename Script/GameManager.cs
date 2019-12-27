@@ -99,11 +99,21 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("DataList"))
         {
             dataList = JsonUtility.FromJson<DataList>(PlayerPrefs.GetString("DataList"));
-            dataList.isNew = false;
+
+            if (JsonUtility.FromJson<UserData>(dataList.data1).progress == "")
+            {
+                // opened game but not play
+                dataList.isNew = true;
+            } else
+            {
+                // opened game and have data
+                dataList.isNew = false;
+            }
             dataList.dataNum = 1;
+
         } else
         {
-            dataList.data1 = "{\"progress\": \"PrologueScene\"}";
+            dataList.data1 = "{\"progress\": \"\"}";
             dataList.data2 = "{\"progress\": \"\"}";
             dataList.data3 = "{\"progress\": \"\"}";
             dataList.isNew = true;
