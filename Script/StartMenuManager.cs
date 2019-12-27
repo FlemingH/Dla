@@ -75,9 +75,12 @@ public class StartMenuManager : MonoBehaviour
 
         if (chapterName == null) chapterName = new ChapterName();
 
-        textFile1.text = (curUserData1.progress != "") ? ChapterName.GetChapterName(curUserData1.progress) : "空";
-        textFile2.text = (curUserData2.progress != "") ? ChapterName.GetChapterName(curUserData2.progress) : "空";
-        textFile3.text = (curUserData3.progress != "") ? ChapterName.GetChapterName(curUserData3.progress) : "空";
+        textFile1.text = (curUserData1.progress != "") ? 
+            ChapterName.GetChapterName(curUserData1.progress) + " " + curUserData1.dataTime : "空";
+        textFile2.text = (curUserData2.progress != "") ? 
+            ChapterName.GetChapterName(curUserData2.progress) + " " + curUserData2.dataTime : "空";
+        textFile3.text = (curUserData3.progress != "") ? 
+            ChapterName.GetChapterName(curUserData3.progress) + " " + curUserData3.dataTime : "空";
 
     }
 
@@ -470,9 +473,9 @@ public class StartMenuManager : MonoBehaviour
     {
         curDataList = new DataList
         {
-            data1 = "{\"progress\": \"PrologueScene\"}",
-            data2 = "{\"progress\": \"\"}",
-            data3 = "{\"progress\": \"\"}"
+            data1 = "{\"progress\": \"PrologueScene\", \"dataTime\": \"\"}",
+            data2 = "{\"progress\": \"\", \"dataTime\": \"\"}",
+            data3 = "{\"progress\": \"\", \"dataTime\": \"\"}"
         };
 
         curUserData1 = JsonUtility.FromJson<UserData>(curDataList.data1);
@@ -486,7 +489,7 @@ public class StartMenuManager : MonoBehaviour
     {
         if (curUserData2.progress == "")
         {
-            curDataList.data2 = "{\"progress\": \"PrologueScene\"}";
+            curDataList.data2 = "{\"progress\": \"PrologueScene\", \"dataTime\": \"\"}";
             curDataList.dataNum = 2;
             // save data
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
@@ -496,7 +499,7 @@ public class StartMenuManager : MonoBehaviour
 
         if (curUserData3.progress == "")
         {
-            curDataList.data3 = "{\"progress\": \"PrologueScene\"}";
+            curDataList.data3 = "{\"progress\": \"PrologueScene\", \"dataTime\": \"\"}";
             curDataList.dataNum = 3;
             // save data
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
@@ -509,7 +512,7 @@ public class StartMenuManager : MonoBehaviour
             // queue mode
             string data1 = curDataList.data1;
             string data2 = curDataList.data2;
-            curDataList.data1 = "{\"progress\": \"PrologueScene\"}";
+            curDataList.data1 = "{\"progress\": \"PrologueScene\", \"dataTime\": \"\"}";
             curDataList.data2 = data1;
             curDataList.data3 = data2;
             curDataList.dataNum = 1;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -113,9 +114,9 @@ public class GameManager : MonoBehaviour
 
         } else
         {
-            dataList.data1 = "{\"progress\": \"\"}";
-            dataList.data2 = "{\"progress\": \"\"}";
-            dataList.data3 = "{\"progress\": \"\"}";
+            dataList.data1 = "{\"progress\": \"\", \"dataTime\": \"\"}";
+            dataList.data2 = "{\"progress\": \"\", \"dataTime\": \"\"}";
+            dataList.data3 = "{\"progress\": \"\", \"dataTime\": \"\"}";
             dataList.isNew = true;
             dataList.dataNum = 1;
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(dataList));
@@ -134,22 +135,37 @@ public class GameManager : MonoBehaviour
             case 1:
                 curUserData = JsonUtility.FromJson<UserData>(curDataList.data1);
                 curUserData.progress = sceneName;
+                curUserData.dataTime = GetCurTimeFormat();
                 curDataList.data1 = JsonUtility.ToJson(curUserData);
                 break;
             case 2:
                 curUserData = JsonUtility.FromJson<UserData>(curDataList.data2);
                 curUserData.progress = sceneName;
+                curUserData.dataTime = GetCurTimeFormat();
                 curDataList.data2 = JsonUtility.ToJson(curUserData);
                 break;
             case 3:
                 curUserData = JsonUtility.FromJson<UserData>(curDataList.data3);
                 curUserData.progress = sceneName;
+                curUserData.dataTime = GetCurTimeFormat();
                 curDataList.data3 = JsonUtility.ToJson(curUserData);
                 break;
         }
         PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
     }
 
+    private string GetCurTimeFormat ()
+    {
+        int year = DateTime.Now.Year;
+        int month = DateTime.Now.Month;
+        int day = DateTime.Now.Day;
+        int hour = DateTime.Now.Hour;
+        int min = DateTime.Now.Minute;
+        int sec = DateTime.Now.Second;
+
+        return string.Format("{0:D2}:{1:D2}:{2:D2} " + "{3:D4}-{4:D2}-{5:D2}", 
+            hour, min, sec, year, month, day);
+    }
 }
 
 public class DataList
@@ -164,6 +180,7 @@ public class DataList
 public class UserData
 {
     public string progress;
+    public string dataTime;
 }
 
 public class ChapterName
