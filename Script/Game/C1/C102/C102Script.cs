@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class C102Script : MonoBehaviour
 {
 
-    // todo multi choose, now it's useless
-    private int chooseC101_1 = -1;
-    private int chooseC101_2 = -1;
+    // for multi choose
+    public static int chooseC102_1 = -1;
+    public static int chooseC102_2 = -1;
 
     private static string[] lineList1 = new string[] {
         "昨天晚上，我遇见了死神",
@@ -117,7 +117,7 @@ public class C102Script : MonoBehaviour
     // say the ans 1
     private void LoadChooseAnsC102_1(int ansId)
     {
-        chooseC101_1 = ansId;
+        chooseC102_1 = ansId;
 
         if (ansId == 0)
         {
@@ -154,7 +154,7 @@ public class C102Script : MonoBehaviour
     // say the ans 2
     private void LoadChooseAnsC102_2(int ansId)
     {
-        chooseC101_2 = ansId;
+        chooseC102_2 = ansId;
 
         Timer.Instance.AddTimerTask(4, () => { ShowLine.ShowTheLine("..."); });
         Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });

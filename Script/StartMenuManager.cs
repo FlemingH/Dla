@@ -473,9 +473,11 @@ public class StartMenuManager : MonoBehaviour
     {
         curDataList = new DataList
         {
-            data1 = "{\"progress\": \"PrologueScene\", \"dataTime\": \"\"}",
-            data2 = "{\"progress\": \"\", \"dataTime\": \"\"}",
-            data3 = "{\"progress\": \"\", \"dataTime\": \"\"}"
+            data1 = GameManager.standardPlayDataForStart,
+            data2 = GameManager.standardPlayData,
+            data3 = GameManager.standardPlayData,
+            isNew = false,
+            dataNum = 1,
         };
 
         curUserData1 = JsonUtility.FromJson<UserData>(curDataList.data1);
@@ -489,7 +491,7 @@ public class StartMenuManager : MonoBehaviour
     {
         if (curUserData2.progress == "")
         {
-            curDataList.data2 = "{\"progress\": \"PrologueScene\", \"dataTime\": \"\"}";
+            curDataList.data2 = GameManager.standardPlayDataForStart;
             curDataList.dataNum = 2;
             // save data
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
@@ -499,7 +501,7 @@ public class StartMenuManager : MonoBehaviour
 
         if (curUserData3.progress == "")
         {
-            curDataList.data3 = "{\"progress\": \"PrologueScene\", \"dataTime\": \"\"}";
+            curDataList.data3 = GameManager.standardPlayDataForStart;
             curDataList.dataNum = 3;
             // save data
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
@@ -512,7 +514,7 @@ public class StartMenuManager : MonoBehaviour
             // queue mode
             string data1 = curDataList.data1;
             string data2 = curDataList.data2;
-            curDataList.data1 = "{\"progress\": \"PrologueScene\", \"dataTime\": \"\"}";
+            curDataList.data1 = GameManager.standardPlayDataForStart;
             curDataList.data2 = data1;
             curDataList.data3 = data2;
             curDataList.dataNum = 1;
