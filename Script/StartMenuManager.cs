@@ -478,6 +478,7 @@ public class StartMenuManager : MonoBehaviour
             data3 = GameManager.standardPlayData,
             isNew = false,
             dataNum = 1,
+            userChooseV1 = GameManager.standardPlayChoose
         };
 
         curUserData1 = JsonUtility.FromJson<UserData>(curDataList.data1);

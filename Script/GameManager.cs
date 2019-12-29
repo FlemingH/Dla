@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
 
-    public static string standardPlayData = "{\"progress\": \"\", \"dataTime\": \"\", " +
-        "\"userChooseV1\":\"{\\\"c102_1\\\":-1,\\\"c102_2\\\":-1}\"}";
-    public static string standardPlayDataForStart = "{\"progress\": \"Chapter102\", \"dataTime\": \"\", " +
-        "\"userChooseV1\":\"{\\\"c102_1\\\":-1,\\\"c102_2\\\":-1}\"}";
+    public static string standardPlayData = JsonUtility.ToJson(new UserData("", ""));
+    public static string standardPlayDataForStart = JsonUtility.ToJson(new UserData("Chapter102", ""));
+
+    public static string standardPlayChoose = JsonUtility.ToJson(new UserChooseV1());
 
     private StartMenuManager startMenuManager;
     private KeyController keyController;
@@ -79,9 +79,9 @@ public class GameManager : MonoBehaviour
             UserChooseV1 userChooseV1 = GetCurUserChoosesObj();
 
             // override data
-            userChooseV1.c102_1 = C102Script.chooseC102_1;
-            userChooseV1.c102_2 = C102Script.chooseC102_2;
-            
+            if (userChooseV1.c102_1 == -1) userChooseV1.c102_1 = C102Script.chooseC102_1;
+            if (userChooseV1.c102_2 == -1) userChooseV1.c102_2 = C102Script.chooseC102_2;
+
             // save data
             RewriteDataList("Chapter103", JsonUtility.ToJson(userChooseV1));
 
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
                 dataList.isNew = false;
             }
             dataList.dataNum = 1;
-
+            dataList.userChooseV1 = standardPlayChoose;
         } else
         {
             dataList.data1 = standardPlayData;
@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
             dataList.data3 = standardPlayData;
             dataList.isNew = true;
             dataList.dataNum = 1;
+            dataList.userChooseV1 = standardPlayChoose;
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(dataList));
         }
 
@@ -143,16 +144,7 @@ public class GameManager : MonoBehaviour
     {
         DataList curDataList = JsonUtility.FromJson<DataList>(PlayerPrefs.GetString("DataList"));
 
-        switch (curDataList.dataNum)
-        {
-            case 1:
-                return JsonUtility.FromJson<UserChooseV1>(JsonUtility.FromJson<UserData>(curDataList.data1).userChooseV1);
-            case 2:
-                return JsonUtility.FromJson<UserChooseV1>(JsonUtility.FromJson<UserData>(curDataList.data2).userChooseV1);
-            case 3:
-                return JsonUtility.FromJson<UserChooseV1>(JsonUtility.FromJson<UserData>(curDataList.data3).userChooseV1);
-        }
-        return new UserChooseV1();
+        return JsonUtility.FromJson<UserChooseV1>(curDataList.userChooseV1);
     }
 
     private void RewriteDataList(string sceneName, string chooses)
@@ -160,27 +152,26 @@ public class GameManager : MonoBehaviour
         DataList curDataList = JsonUtility.FromJson<DataList>(PlayerPrefs.GetString("DataList"));
         UserData curUserData;
 
+        if (chooses != "") { curDataList.userChooseV1 = chooses; }
+
         switch (curDataList.dataNum)
         {
             case 1:
                 curUserData = JsonUtility.FromJson<UserData>(curDataList.data1);
                 curUserData.progress = sceneName;
                 curUserData.dataTime = GetCurTimeFormat();
-                if (chooses != "") { curUserData.userChooseV1 = chooses; }
                 curDataList.data1 = JsonUtility.ToJson(curUserData);
                 break;
             case 2:
                 curUserData = JsonUtility.FromJson<UserData>(curDataList.data2);
                 curUserData.progress = sceneName;
                 curUserData.dataTime = GetCurTimeFormat();
-                if (chooses != "") { curUserData.userChooseV1 = chooses; }
                 curDataList.data2 = JsonUtility.ToJson(curUserData);
                 break;
             case 3:
                 curUserData = JsonUtility.FromJson<UserData>(curDataList.data3);
                 curUserData.progress = sceneName;
                 curUserData.dataTime = GetCurTimeFormat();
-                if (chooses != "") { curUserData.userChooseV1 = chooses; }
                 curDataList.data3 = JsonUtility.ToJson(curUserData);
                 break;
         }
@@ -209,13 +200,19 @@ public class DataList
     public string data3;
     public bool isNew;
     public int dataNum;
+    public string userChooseV1;
 }
 
 public class UserData
 {
     public string progress;
     public string dataTime;
-    public string userChooseV1;
+
+    public UserData(string p, string time) 
+    {
+        progress = p;
+        dataTime = time;
+    }
 }
 
 public class ChapterName
