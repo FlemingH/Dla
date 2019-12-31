@@ -50,6 +50,11 @@ public class C103Script : MonoBehaviour
     private GameObject Color3;
     private GameObject Color4;
 
+    private static Animator animatorColor1;
+    private static Animator animatorColor2;
+    private static Animator animatorColor3;
+    private static Animator animatorColor4;
+
     private void Update()
     {
         Timer.Instance.UpdateTimer();
@@ -66,13 +71,36 @@ public class C103Script : MonoBehaviour
         Color4 = GameObject.Find("c103color_4");
 
         // code assign
-        C103ColorController.animatorColor1 = Color1.GetComponent<Animator>();
-        C103ColorController.animatorColor2 = Color2.GetComponent<Animator>();
-        C103ColorController.animatorColor3 = Color3.GetComponent<Animator>();
-        C103ColorController.animatorColor4 = Color4.GetComponent<Animator>();
+        animatorColor1 = Color1.GetComponent<Animator>();
+        animatorColor2 = Color2.GetComponent<Animator>();
+        animatorColor3 = Color3.GetComponent<Animator>();
+        animatorColor4 = Color4.GetComponent<Animator>();
 
         SceneStep1();
         LoadLine3();
+    }
+
+    private void StartColorAnim(int i)
+    {
+        switch (i)
+        {
+            case 1:
+                Color1.SetActive(true);
+                animatorColor1.SetFloat("OpenColor1", 1);
+                break;
+            case 2:
+                Color2.SetActive(true);
+                animatorColor2.SetFloat("OpenColor2", 1);
+                break;
+            case 3:
+                Color3.SetActive(true);
+                animatorColor3.SetFloat("OpenColor3", 1);
+                break;
+            case 4:
+                Color4.SetActive(true);
+                animatorColor4.SetFloat("OpenColor4", 1);
+                break;
+        }
     }
 
     private void SceneStep1()
