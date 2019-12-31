@@ -5,7 +5,7 @@ using UnityEngine;
 public class C103Script : MonoBehaviour
 {
 
-    private static string[] lineList1 = new string[] 
+    private static string[] lineList1 = new string[]
     {
         "我不是出了车祸才进医院的",
         "我早就住在医院里了",
@@ -25,13 +25,77 @@ public class C103Script : MonoBehaviour
         "渡渡，你说死后会不会很冷，要不要一副手套"
     };
 
+    private static string[] lineList3 = new string[]
+    {
+        "小女孩在门后看到了我",
+        "她的父母怎么教育她的？",
+        "我，一个四五十岁的老烟鬼，隔着消防通道门，盯着他们的女儿看",
+        "这个小孩压根不害怕",
+        "他们为什..."
+    };
+
+    private static string[] girlLineList = new string[]
+    {
+        "你也得了癌症了嘛？",
+        "你是名人吗？报纸上有你的照片",
+        "死了以后会不会觉得冷"
+    };
+
+    private GameObject ImageBack2;
+    private GameObject Man1;
+    private GameObject Man2;
+    private GameObject Girl;
+    private GameObject Color1;
+    private GameObject Color2;
+    private GameObject Color3;
+    private GameObject Color4;
+
     private void Update()
     {
         Timer.Instance.UpdateTimer();
     }
     public void InitScene()
     {
-        LoadLine1();
+        ImageBack2 = GameObject.Find("ImageBack2");
+        Man1 = GameObject.Find("c103man_1");
+        Man2 = GameObject.Find("c103man_2");
+        Girl = GameObject.Find("c103Girl");
+        Color1 = GameObject.Find("c103color_1");
+        Color2 = GameObject.Find("c103color_2");
+        Color3 = GameObject.Find("c103color_3");
+        Color4 = GameObject.Find("c103color_4");
+
+        // code assign
+        C103ColorController.animatorColor1 = Color1.GetComponent<Animator>();
+        C103ColorController.animatorColor2 = Color2.GetComponent<Animator>();
+        C103ColorController.animatorColor3 = Color3.GetComponent<Animator>();
+        C103ColorController.animatorColor4 = Color4.GetComponent<Animator>();
+
+        SceneStep1();
+        LoadLine3();
+    }
+
+    private void SceneStep1()
+    {
+        ImageBack2.SetActive(false);
+        Man2.SetActive(false);
+        Girl.SetActive(false);
+        Color1.SetActive(false);
+        Color2.SetActive(false);
+        Color3.SetActive(false);
+        Color4.SetActive(false);
+    }
+
+    private void SceneStep2()
+    {
+        ImageBack2.SetActive(true);
+        Man1.SetActive(false);
+        Man2.SetActive(true);
+        Girl.SetActive(true);
+        Color1.SetActive(false);
+        Color2.SetActive(false);
+        Color3.SetActive(false);
+        Color4.SetActive(false);
     }
 
     private void LoadLine1()
@@ -60,7 +124,7 @@ public class C103Script : MonoBehaviour
     {
         ShowLine.ClearTheLine();
         Timer.Instance.AddTimerTask(3, () => { LoadLine2(); });
-        
+
     }
 
 
@@ -87,6 +151,28 @@ public class C103Script : MonoBehaviour
     private void Line2Over()
     {
         ShowLine.ClearTheBlackLine();
+        LoadLine3();
     }
 
+
+    private void LoadLine3()
+    {
+        SceneStep2();
+        Timer.Instance.AddTimerTask(2, HerSeeMe);
+        Timer.Instance.AddTimerTask(5, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(6, WhatEdu);
+        Timer.Instance.AddTimerTask(9, IStareGirl);
+        Timer.Instance.AddTimerTask(15, SheNotFear);
+        Timer.Instance.AddTimerTask(18, WhyTheyDoThat);
+        Timer.Instance.AddTimerTask(19, Line3Over);
+    }
+    private void HerSeeMe() { ShowLine.ShowTheLine(lineList3[0]); }
+    private void WhatEdu() { ShowLine.ShowTheLine(lineList3[1]); }
+    private void IStareGirl() { ShowLine.ShowTheLine(lineList3[2]); }
+    private void SheNotFear() { ShowLine.ShowTheLine(lineList3[3]); }
+    private void WhyTheyDoThat() { ShowLine.ShowTheLine(lineList3[4]); }
+    private void Line3Over()
+    {
+        ShowLine.ClearTheLine();
+    }
 }
