@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class C103Script : MonoBehaviour
 {
+    // for multi choose
+    public static int chooseC103_1 = -1;
+    public static int chooseC103_2 = -1;
+    public static int chooseC103_3 = -1;
 
     private static string[] lineList1 = new string[]
     {
@@ -36,9 +40,40 @@ public class C103Script : MonoBehaviour
 
     private static string[] girlLineList = new string[]
     {
-        "你也得了癌症了嘛？",
-        "你是名人吗？报纸上有你的照片",
-        "死了以后会不会觉得冷"
+        "女孩：你也得了癌症了嘛？",
+        "女孩：你是名人吗？报纸上有你的照片",
+        "女孩：死了以后会不会觉得冷？",
+        "女孩：得了癌症就可以在家具上画画了哦",
+        "女孩：不会有人说你什么的",
+        "女孩：我准备了一副手套，是从阿姨那里拿的哦",
+        "女孩：她说她那里还有很多"
+    };
+
+    private static string[] AnsList1 = new string[]
+    {
+        "...",
+        "是的"
+    };
+
+    private static string[] AnsList2 = new string[]
+    {
+        "...",
+        "是的",
+        "我：我的癌症和你的癌症可是不一样的哟",
+        "我：很罕见的一种..."
+    };
+
+    private static string[] AnsList3 = new string[]
+    {
+        "别在家具上乱画",
+        "我不知道..."
+    };
+
+    public static string[] lineList4 = new string[]
+    {
+        "虽然不太明白她是什么意思，我却笑出了声",
+        "她也笑了",
+        "我上一次笑是什么时候来着？"
     };
 
     private GameObject ImageBack2;
@@ -58,6 +93,8 @@ public class C103Script : MonoBehaviour
     private void Update()
     {
         Timer.Instance.UpdateTimer();
+
+        ListenTheLineChoose();
     }
     public void InitScene()
     {
@@ -77,7 +114,7 @@ public class C103Script : MonoBehaviour
         animatorColor4 = Color4.GetComponent<Animator>();
 
         SceneStep1();
-        LoadLine3();
+        LoadLine1();
     }
 
     private void StartColorAnim(int i)
@@ -186,13 +223,13 @@ public class C103Script : MonoBehaviour
     private void LoadLine3()
     {
         SceneStep2();
-        Timer.Instance.AddTimerTask(2, HerSeeMe);
-        Timer.Instance.AddTimerTask(5, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(6, WhatEdu);
-        Timer.Instance.AddTimerTask(9, IStareGirl);
-        Timer.Instance.AddTimerTask(15, SheNotFear);
-        Timer.Instance.AddTimerTask(18, WhyTheyDoThat);
-        Timer.Instance.AddTimerTask(19, Line3Over);
+        Timer.Instance.AddTimerTask(4, HerSeeMe);
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(8, WhatEdu);
+        Timer.Instance.AddTimerTask(11, IStareGirl);
+        Timer.Instance.AddTimerTask(17, SheNotFear);
+        Timer.Instance.AddTimerTask(20, WhyTheyDoThat);
+        Timer.Instance.AddTimerTask(21, Line3Over);
     }
     private void HerSeeMe() { ShowLine.ShowTheLine(lineList3[0]); }
     private void WhatEdu() { ShowLine.ShowTheLine(lineList3[1]); }
@@ -202,5 +239,161 @@ public class C103Script : MonoBehaviour
     private void Line3Over()
     {
         ShowLine.ClearTheLine();
+        LoadQues();
+    }
+
+
+
+
+
+    // say the ans
+    private void ListenTheLineChoose()
+    {
+        if (ShowLine.hasResult)
+        {
+            if (ShowLine.curChooseId == "C103_1")
+            {
+                LoadAnsC103_1(ShowLine.curChoose);
+                ShowLine.ClearTheChooseLine();
+            }
+
+            if (ShowLine.curChooseId == "C103_2")
+            {
+                LoadAnsC103_2(ShowLine.curChoose);
+                ShowLine.ClearTheChooseLine();
+            }
+
+            if (ShowLine.curChooseId == "C103_3")
+            {
+                LoadAnsC103_3(ShowLine.curChoose);
+                ShowLine.ClearTheChooseLine();
+            }
+        }
+    }
+
+    private void LoadQues()
+    {
+        YouHaveCancer();
+        Timer.Instance.AddTimerTask(1, () => { StartColorAnim(1); });
+        Timer.Instance.AddTimerTask(4, () => { ShowLine.ClearTheLine(); });
+
+        Timer.Instance.AddTimerTask(10, () => { StartColorAnim(2); });
+
+        // set Ans 1
+        Timer.Instance.AddTimerTask(7, () => {
+            ShowLine.SetChooseLine(
+                AnsList1[0],
+                AnsList1[1],
+                "C103_1"
+            );
+        });
+    }
+
+
+    private void LoadAnsC103_1(int ansId)
+    {
+        chooseC103_1 = ansId;
+
+        Timer.Instance.AddTimerTask(3, AreYouFamous);
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
+
+        // set Ans 2
+        Timer.Instance.AddTimerTask(10, () => {
+            ShowLine.SetChooseLine(
+                AnsList2[0],
+                AnsList2[1],
+                "C103_2"
+            );
+        });
+        Timer.Instance.AddTimerTask(15, () => { StartColorAnim(3); });
+    }
+    private void LoadAnsC103_2 (int ansId)
+    {
+        chooseC103_2 = ansId;
+
+        if (ansId == 1)
+        {
+            Timer.Instance.AddTimerTask(2, () => { ShowLine.ShowTheLine(AnsList2[2]); });
+            Timer.Instance.AddTimerTask(6, () => { ShowLine.ShowTheLine(AnsList2[3]); });
+            Timer.Instance.AddTimerTask(10, () => { ShowLine.ClearTheLine(); });
+
+            Timer.Instance.AddTimerTask(16, AreDieCold);
+            Timer.Instance.AddTimerTask(20, () => { ShowLine.ClearTheLine(); });
+
+            // set Ans 3
+            Timer.Instance.AddTimerTask(25, () => {
+                ShowLine.SetChooseLine(
+                    AnsList3[0],
+                    AnsList3[1],
+                    "C103_3"
+                );
+            });
+        }
+
+        if (ansId == 0)
+        {
+            Timer.Instance.AddTimerTask(4, () => { ShowLine.ShowTheLine("..."); });
+            Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
+
+            Timer.Instance.AddTimerTask(11, AreDieCold);
+            Timer.Instance.AddTimerTask(15, () => { ShowLine.ClearTheLine(); });
+
+            // set Ans 3
+            Timer.Instance.AddTimerTask(20, () => {
+                ShowLine.SetChooseLine(
+                    AnsList3[0],
+                    AnsList3[1],
+                    "C103_3"
+                );
+            });
+        }
+        Timer.Instance.AddTimerTask(30, () => { StartColorAnim(4); });
+    }
+    private void LoadAnsC103_3(int ansId)
+    {
+        chooseC103_3 = ansId;
+        
+        if (ansId == 0)
+        {
+            Timer.Instance.AddTimerTask(4, CanDrawWhenCancer);
+            Timer.Instance.AddTimerTask(9, NoOneSayYou);
+            Timer.Instance.AddTimerTask(14, () => { ShowLine.ClearTheLine(); });
+        }
+        if (ansId == 1)
+        {
+            Timer.Instance.AddTimerTask(4, IHaveGloves);
+            Timer.Instance.AddTimerTask(9, SheHasLot);
+            Timer.Instance.AddTimerTask(14, () => { ShowLine.ClearTheLine(); });
+        }
+
+        Timer.Instance.AddTimerTask(19, AnsOver);
+    }
+    private void YouHaveCancer() { ShowLine.ShowTheLine(girlLineList[0]); }
+    private void AreYouFamous() { ShowLine.ShowTheLine(girlLineList[1]); }
+    private void AreDieCold() { ShowLine.ShowTheLine(girlLineList[2]); }
+    private void CanDrawWhenCancer() { ShowLine.ShowTheLine(girlLineList[3]); }
+    private void NoOneSayYou() { ShowLine.ShowTheLine(girlLineList[4]); }
+    private void IHaveGloves() { ShowLine.ShowTheLine(girlLineList[5]); }
+    private void SheHasLot() { ShowLine.ShowTheLine(girlLineList[6]); }
+    private void AnsOver()
+    {
+        LoadEndBackLine();
+    }
+
+
+    private void LoadEndBackLine()
+    {
+        ShowLine.ShowTheBlackLine("");
+        Timer.Instance.AddTimerTask(2, () => { ShowLine.ShowTheBlackLine(lineList4[0]); });
+        Timer.Instance.AddTimerTask(6, () => { ShowLine.ShowTheBlackLine(""); });
+        Timer.Instance.AddTimerTask(7, () => { ShowLine.ShowTheBlackLine(lineList4[1]); });
+        Timer.Instance.AddTimerTask(11, () => { ShowLine.ShowTheBlackLine(""); });
+        Timer.Instance.AddTimerTask(12, () => { ShowLine.ShowTheBlackLine(lineList4[2]); });
+        Timer.Instance.AddTimerTask(16, () => { ShowLine.ShowTheBlackLine(""); });
+        Timer.Instance.AddTimerTask(18, ToC104);
+    }
+    private void ToC104()
+    {
+
     }
 }

@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public static string standardPlayData = JsonUtility.ToJson(new UserData("", ""));
-    public static string standardPlayDataForStart = JsonUtility.ToJson(new UserData("Chapter102", ""));
+    public static string standardPlayDataForStart = JsonUtility.ToJson(new UserData("Chapter103", ""));
 
     public static string standardPlayChoose = JsonUtility.ToJson(new UserChooseV1());
 
@@ -237,4 +237,8 @@ public class UserChooseV1
 {
     public int c102_1 = -1;
     public int c102_2 = -1;
+
+    public int c103_1 = -1;
+    public int c103_2 = -1;
+    public int c103_3 = -1;
 }
