@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class C103Script : MonoBehaviour
 {
@@ -394,6 +395,9 @@ public class C103Script : MonoBehaviour
     }
     private void ToC104()
     {
-
+        if (SceneManager.GetActiveScene().name == "Chapter103")
+        {
+            SceneManager.LoadScene("Chapter104");
+        }
     }
 }

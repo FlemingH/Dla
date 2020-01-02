@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private C101Script c101Script;
     private C102Script c102Script;
     private C103Script c103Script;
+    private C104Script c104Script;
 
     private DataList dataList;
 
@@ -79,14 +80,31 @@ public class GameManager : MonoBehaviour
             UserChooseV1 userChooseV1 = GetCurUserChoosesObj();
 
             // override data
-            if (userChooseV1.c102_1 == -1) userChooseV1.c102_1 = C102Script.chooseC102_1;
-            if (userChooseV1.c102_2 == -1) userChooseV1.c102_2 = C102Script.chooseC102_2;
+            if (C102Script.chooseC102_1 != -1) userChooseV1.c102_1 = C102Script.chooseC102_1;
+            if (C102Script.chooseC102_2 != -1) userChooseV1.c102_2 = C102Script.chooseC102_2;
 
             // save data
             RewriteDataList("Chapter103", JsonUtility.ToJson(userChooseV1));
 
             c103Script = GetComponent<C103Script>();
             c103Script.InitScene();
+            return;
+        }
+        if (scence.name == "Chapter104")
+        {
+            // get pre data
+            UserChooseV1 userChooseV1 = GetCurUserChoosesObj();
+
+            // override data
+            if (C103Script.chooseC103_1 != -1) userChooseV1.c103_1 = C103Script.chooseC103_1;
+            if (C103Script.chooseC103_2 != -1) userChooseV1.c103_2 = C103Script.chooseC103_2;
+            if (C103Script.chooseC103_3 != -1) userChooseV1.c103_3 = C103Script.chooseC103_3;
+
+            // save data
+            RewriteDataList("Chapter104", JsonUtility.ToJson(userChooseV1));
+
+            c104Script = GetComponent<C104Script>();
+            c104Script.InitScene();
             return;
         }
     }
@@ -225,6 +243,7 @@ public class ChapterName
         nameMap.Add("Chapter101", "医院，七天前");
         nameMap.Add("Chapter102", "车祸，疑惑");
         nameMap.Add("Chapter103", "消防通道，六天前");
+        nameMap.Add("Chapter104", "车祸，交易");
     }
 
     public static string GetChapterName(string code)
