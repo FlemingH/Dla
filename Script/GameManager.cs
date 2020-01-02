@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public static string standardPlayData = JsonUtility.ToJson(new UserData("", ""));
-    public static string standardPlayDataForStart = JsonUtility.ToJson(new UserData("Chapter103", ""));
+    public static string standardPlayDataForStart = JsonUtility.ToJson(new UserData("PrologueScene", ""));
 
     public static string standardPlayChoose = JsonUtility.ToJson(new UserChooseV1());
 

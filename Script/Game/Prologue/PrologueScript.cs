@@ -9,6 +9,11 @@ public class PrologueScript : MonoBehaviour
     private GameObject panelAuthor;
     private Text textShowing;
 
+    private static string[] gameLineList = new string[]
+    {
+        "时间的礼物"
+    };
+
     private static string[] lineList = new string[] {
         "这里是赫尔辛堡，平安夜的早晨。",
         "我刚才杀了一个人...",
@@ -21,19 +26,22 @@ public class PrologueScript : MonoBehaviour
         Timer.Instance.AddTimerTask(3, ShowPanelAuthor);
         Timer.Instance.AddTimerTask(7, HidePanelAuthor);
 
-        Timer.Instance.AddTimerTask(10, ThisIsHelsingborg);
-        Timer.Instance.AddTimerTask(15, HideTextShowing);
+        Timer.Instance.AddTimerTask(9, ShowGameName);
+        Timer.Instance.AddTimerTask(14, HideTextShowing);
 
-        Timer.Instance.AddTimerTask(17, IJustKillAMan);
-        Timer.Instance.AddTimerTask(23, HideTextShowing);
+        Timer.Instance.AddTimerTask(17, ThisIsHelsingborg);
+        Timer.Instance.AddTimerTask(22, HideTextShowing);
 
-        Timer.Instance.AddTimerTask(25, IsEveryoneEqual);
-        Timer.Instance.AddTimerTask(29, HideTextShowing);
+        Timer.Instance.AddTimerTask(24, IJustKillAMan);
+        Timer.Instance.AddTimerTask(30, HideTextShowing);
 
-        Timer.Instance.AddTimerTask(31, IfAChildDie);
-        Timer.Instance.AddTimerTask(38, HideTextShowing);
+        Timer.Instance.AddTimerTask(32, IsEveryoneEqual);
+        Timer.Instance.AddTimerTask(36, HideTextShowing);
 
-        Timer.Instance.AddTimerTask(41, LoadChapter101);
+        Timer.Instance.AddTimerTask(38, IfAChildDie);
+        Timer.Instance.AddTimerTask(45, HideTextShowing);
+
+        Timer.Instance.AddTimerTask(48, LoadChapter101);
     }
 
     public void InitScene()
@@ -50,6 +58,15 @@ public class PrologueScript : MonoBehaviour
     private void Update()
     {
         Timer.Instance.UpdateTimer();
+    }
+
+    private void ShowGameName()
+    {
+        if (textShowing == null)
+        {
+            return;
+        }
+        textShowing.text = gameLineList[0];
     }
 
     private void ShowPanelAuthor()
