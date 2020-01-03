@@ -8,6 +8,7 @@ public class Loader : MonoBehaviour
     public GameObject gameManager;
     public GameObject canvasShade;
     public GameObject canvasShowLine;
+    public GameObject audioManager;
 
     private void Awake()
     {
@@ -22,6 +23,10 @@ public class Loader : MonoBehaviour
         if (ShowLine.instance == null)
         {
             Instantiate(canvasShowLine);
+        }
+        if (AudioManager.instance == null)
+        {
+            Instantiate(audioManager);
         }
     }
 }

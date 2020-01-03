@@ -627,6 +627,8 @@ MonoBehaviour:
     type: 3}
   canvasShowLine: {fileID: 6387530720266541654, guid: 760903d57df1c1b4ab196575f29542ce,
     type: 3}
+  audioManager: {fileID: 3315333460722023661, guid: 2b0e4c9f994b4a946972c9dd277140ae,
+    type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
