@@ -164,8 +164,8 @@ public class C102Script : MonoBehaviour
 
         Timer.Instance.AddTimerTask(14, IHeatRelat);
         Timer.Instance.AddTimerTask(19, GiveMeFile);
-        Timer.Instance.AddTimerTask(22, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(26, () => { LoadChapter103(); });
+        Timer.Instance.AddTimerTask(24, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(28, () => { LoadChapter103(); });
     }
     private void IHeatRelat() { ShowLine.ShowTheLine(chooseLine2AnsList[0]); }
     private void GiveMeFile() { ShowLine.ShowTheLine(chooseLine2AnsList[1]); }

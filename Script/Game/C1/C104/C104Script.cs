@@ -59,6 +59,7 @@ public class C104Script : MonoBehaviour
         "我：你的文件夹",
         "我：我的名字在里面？",
         "一生换一生是什么意思？",
+        "那么活下去的代价是什么？",
         "这个文件夹是什么？"
     };
     private static string[] lineWomanList3 = new string[]
@@ -231,13 +232,26 @@ public class C104Script : MonoBehaviour
         Timer.Instance.AddTimerTask(13, HaveEveryOneName);
         Timer.Instance.AddTimerTask(17, () => { ShowLine.ClearTheLine(); });
 
-        Timer.Instance.AddTimerTask(19, () => {
-            ShowLine.SetChooseLine(
-                lineManList3[2],
-                lineManList3[3],
-                "C104_3"
-            );
-        });
+        if (chooseC104_1 == 0)
+        {
+            Timer.Instance.AddTimerTask(19, () => {
+                ShowLine.SetChooseLine(
+                    lineManList3[2],
+                    lineManList3[4],
+                    "C104_3"
+                );
+            });
+        }
+        if (chooseC104_1 == 1)
+        {
+            Timer.Instance.AddTimerTask(19, () => {
+                ShowLine.SetChooseLine(
+                    lineManList3[3],
+                    lineManList3[4],
+                    "C104_3"
+                );
+            });
+        }
     }
     private void WomanAns3(int ansId)
     {
