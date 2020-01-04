@@ -8,6 +8,7 @@ public class PrologueScript : MonoBehaviour
 {
     private GameObject panelAuthor;
     private Text textShowing;
+    private AudioSource bgm_1;
 
     private static string[] gameLineList = new string[]
     {
@@ -23,6 +24,8 @@ public class PrologueScript : MonoBehaviour
 
     private void LoadLineTask()
     {
+        AudioManager.instance.StartAudioSource(bgm_1, "Prologue_bgm_1");
+
         Timer.Instance.AddTimerTask(3, ShowPanelAuthor);
         Timer.Instance.AddTimerTask(7, HidePanelAuthor);
 
@@ -48,6 +51,7 @@ public class PrologueScript : MonoBehaviour
     {
         panelAuthor = GameObject.Find("PanelAuthor");
         textShowing = GameObject.Find("TextShowing").GetComponent<Text>();
+        bgm_1 = GameObject.Find("Main Camera").GetComponent<AudioSource>();
 
         panelAuthor.SetActive(false);
         HideTextShowing();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance = null;
-    private static AudioSource audioSource;
+    public AudioSource audioSource;
 
     public static string audioName;
 
@@ -23,40 +23,40 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public static void SetAudioSource (AudioSource audio, string name, float volume = 0.5f) {
-        audioSource = audio;
-        audioSource.volume = volume;
-        audioName = name;
-    }
-
-    public static void ClearAudioSource ()
+    public void ClearAudioSource ()
     {
         StopAudioSource();
-        audioSource = null;
+        instance.audioSource = null;
         audioName = "";
     }
 
-    public static void StartAudioSource ()
+    public void StartAudioSource (AudioSource audio, string name, float volume = 0.5f)
     {
-        if (audioSource != null && !audioSource.isPlaying)
+        ClearAudioSource();
+
+        instance.audioSource = audio;
+        instance.audioSource.volume = volume;
+        audioName = name;
+
+        if (instance.audioSource != null && !instance.audioSource.isPlaying)
         {
-            audioSource.Play();
+            instance.audioSource.Play();
         }
     }
 
-    public static void StopAudioSource ()
+    public void StopAudioSource ()
     {
-        if (audioSource.isPlaying)
+        if (instance.audioSource != null && instance.audioSource.isPlaying)
         {
-            audioSource.Stop();
+            instance.audioSource.Stop();
         }
     }
 
-    public static void PauseAudioSource()
+    public void PauseAudioSource()
     {
-        if (audioSource.isPlaying)
+        if (instance.audioSource != null && instance.audioSource.isPlaying)
         {
-            audioSource.Pause();
+            instance.audioSource.Pause();
         }
     }
 }
