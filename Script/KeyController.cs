@@ -26,6 +26,7 @@ public class KeyController : MonoBehaviour
                 Time.timeScale = 0;
                 CanvasShade.instance.ShowCanvas();
                 CanvasShade.instance.ShowMenu(1, 1);
+                AudioManager.instance.PauseAudioSource();
             }
         }
     }

@@ -194,6 +194,7 @@ public class CanvasShade : MonoBehaviour
                     Time.timeScale = 1f;
                     HideMenu();
                     HideCanvas();
+                    AudioManager.instance.RestartAudioSource();
                     return;
                 }
 
@@ -296,6 +297,7 @@ public class CanvasShade : MonoBehaviour
                 HideMenu();
                 HideCanvas();
                 HideGameStory();
+                AudioManager.instance.RestartAudioSource();
                 return;
             }
             

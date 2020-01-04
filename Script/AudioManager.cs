@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
     public void ClearAudioSource ()
     {
         StopAudioSource();
+        audioSource.clip = null;
         audioName = "";
     }
 
@@ -59,6 +60,14 @@ public class AudioManager : MonoBehaviour
         if (audioSource != null && audioSource.isPlaying)
         {
             audioSource.Pause();
+        }
+    }
+
+    public void RestartAudioSource()
+    {
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();
         }
     }
 }
