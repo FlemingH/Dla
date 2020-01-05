@@ -80,9 +80,6 @@ public class C102Script : MonoBehaviour
     private void LoadBlackLine1()
     {
         ShowLine.ShowTheBlackLine("");
-        Timer.Instance.AddTimerTask(3, () => {
-            AudioManager.instance.StartAudioSource("Audio/C102", "C102_bgm_1", true);
-        });
         Timer.Instance.AddTimerTask(4, IMetHer);
         Timer.Instance.AddTimerTask(8, () => { ShowLine.ShowTheBlackLine(""); });
         Timer.Instance.AddTimerTask(9, () => { ShowLine.ClearTheBlackLine(); });
@@ -96,6 +93,10 @@ public class C102Script : MonoBehaviour
         Timer.Instance.AddTimerTask(33, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(34, WhyWeSurvive);
         Timer.Instance.AddTimerTask(39, () => { ShowLine.ClearTheLine(); });
+
+        Timer.Instance.AddTimerTask(40, () => {
+            AudioManager.instance.StartAudioSource("Audio/C102", "C102_bgm_1", true);
+        });
 
         // set ques 1
         Timer.Instance.AddTimerTask(42, () => {
@@ -168,6 +169,7 @@ public class C102Script : MonoBehaviour
         Timer.Instance.AddTimerTask(14, IHeatRelat);
         Timer.Instance.AddTimerTask(19, GiveMeFile);
         Timer.Instance.AddTimerTask(24, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(28, () => { AudioManager.instance.FadeStopAudioSource(); });
         Timer.Instance.AddTimerTask(28, () => { LoadChapter103(); });
     }
     private void IHeatRelat() { ShowLine.ShowTheLine(chooseLine2AnsList[0]); }

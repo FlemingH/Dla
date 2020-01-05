@@ -29,6 +29,7 @@ public class RoomBedTrigger : LineTrigger
         if (isTriggeable && C101Script.isSheCome &&
             (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl)))
         {
+            AudioManager.instance.FadeStopAudioSource();
             C101Script.LoadChapter102();
         }
     }

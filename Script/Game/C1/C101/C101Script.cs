@@ -96,12 +96,9 @@ public class C101Script : MonoBehaviour
             C101ManMovement.ableToMove = true;
         });
 
-        // play c101_bgm_1 and bgm_2
+        // play c101_bgm_1 loop
         Timer.Instance.AddTimerTask(6, () => {
-            AudioManager.instance.StartAudioSource("Audio/C101", "C101_bgm_1");
-        });
-        Timer.Instance.AddTimerTask(53, () => {
-            AudioManager.instance.StartAudioSource("Audio/C101", "C101_bgm_2");
+            AudioManager.instance.StartAudioSource("Audio/C101", "C101_bgm_1", true);
         });
 
         Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
