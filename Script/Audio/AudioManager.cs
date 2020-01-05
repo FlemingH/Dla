@@ -87,10 +87,8 @@ public class AudioManager : MonoBehaviour
         if (!audioNode.audioSource.isPlaying) audioNode.audioSource.Play();
         while (true)
         {
-            Debug.Log(initVolume);
             initVolume += audioNode.volumeAdd * Time.deltaTime * preTime;
             curVolume = initVolume;
-            Debug.Log(initVolume);
             if (initVolume > defaultMaxVolume || initVolume < 0)
             {
                 initVolume = Mathf.Clamp01(initVolume);
@@ -112,12 +110,9 @@ public class AudioManager : MonoBehaviour
         float preTime = 1.0f / audioNode.durationTime;
         while (true)
         {
-            Debug.Log(initVolume);
             initVolume -= audioNode.volumeAdd * Time.deltaTime * preTime;
-            Debug.Log(initVolume);
             if (initVolume <= 0)
             {
-                Debug.Log(1);
                 audioNode.audioSource.volume = 0;
                 audioNode.audioSource.Stop();
                 break;
