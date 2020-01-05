@@ -8,8 +8,14 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource audioSource;
     private bool isLoop = false;
+    private float defaultMaxVolume = 0.3f;
+    private float fadeTime = 1;
+    private float curVolume = 0.0f;
 
-    public static string audioName;
+    private void Update()
+    {
+        Timer.Instance.UpdateTimer();
+    }
 
     private void Awake()
     {
@@ -27,38 +33,39 @@ public class AudioManager : MonoBehaviour
         audioSource = GameObject.Find("AudioPlayer").GetComponent<AudioSource>();
     }
 
-    public void ClearAudioSource ()
-    {
-        StopAudioSource();
-        audioSource.clip = null;
-        audioName = "";
-    }
-
     public void StartAudioSource (string path, string name, bool loop = false)
     {
-        ClearAudioSource();
-
         audioSource.clip = Resources.Load<AudioClip>(path + "/" + name);
-        audioName = name;
+        isLoop = loop;
 
         if (audioSource != null && !audioSource.isPlaying)
         {
-            isLoop = loop;
-            StartCoroutine("AudioSourceVolume", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, 3, isLoop));
+            StartCoroutine("AudioSourceVolumeStart", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, fadeTime, isLoop));
+        } else if (audioSource != null && audioSource.isPlaying)
+        {
+            FadeStopAudioSource();
+
+            Timer.Instance.AddTimerTask(fadeTime + 2, () => {
+                StopCoroutine("AudioSourceVolumeStart");
+                StopCoroutine("AudioSourceVolumeStop");
+
+                StartCoroutine("AudioSourceVolumeStart", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, fadeTime, isLoop));
+            }); 
         }
     }
 
-    public void StopAudioSource ()
+    public void FadeStopAudioSource ()
     {
+        StopCoroutine("AudioSourceVolumeStart");
         if (audioSource != null && audioSource.isPlaying)
         {
-            audioSource.Stop();
+            StartCoroutine("AudioSourceVolumeStop", new AudioNode(audioSource, audioSource.clip, curVolume, 0.1f, fadeTime, false));
         }
     }
 
     public void PauseAudioSource()
     {
-        StopCoroutine("AudioSourceVolume");
+        StopCoroutine("AudioSourceVolumeStart");
         if (audioSource != null && audioSource.isPlaying)
         {
             audioSource.Pause();
@@ -69,23 +76,50 @@ public class AudioManager : MonoBehaviour
     {
         if (audioSource != null && !audioSource.isPlaying)
         {
-            StartCoroutine("AudioSourceVolume", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, 3, isLoop));
+            StartCoroutine("AudioSourceVolumeStart", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, fadeTime, isLoop));
         }
     }
 
-    private IEnumerator AudioSourceVolume(AudioNode audioNode)
+    private IEnumerator AudioSourceVolumeStart (AudioNode audioNode)
     {
         float initVolume = audioNode.audioSource.volume;
         float preTime = 1.0f / audioNode.durationTime;
         if (!audioNode.audioSource.isPlaying) audioNode.audioSource.Play();
         while (true)
         {
+            Debug.Log(initVolume);
             initVolume += audioNode.volumeAdd * Time.deltaTime * preTime;
-            if (initVolume > 0.3f || initVolume < 0)
+            curVolume = initVolume;
+            Debug.Log(initVolume);
+            if (initVolume > defaultMaxVolume || initVolume < 0)
             {
                 initVolume = Mathf.Clamp01(initVolume);
                 audioNode.audioSource.volume = initVolume;
                 if (initVolume == 0) audioNode.audioSource.Stop();
+                break;
+            }
+            else
+            {
+                audioNode.audioSource.volume = initVolume;
+            }
+            yield return 1;
+        }
+    }
+
+    private IEnumerator AudioSourceVolumeStop (AudioNode audioNode)
+    {
+        float initVolume = audioNode.audioSource.volume;
+        float preTime = 1.0f / audioNode.durationTime;
+        while (true)
+        {
+            Debug.Log(initVolume);
+            initVolume -= audioNode.volumeAdd * Time.deltaTime * preTime;
+            Debug.Log(initVolume);
+            if (initVolume <= 0)
+            {
+                Debug.Log(1);
+                audioNode.audioSource.volume = 0;
+                audioNode.audioSource.Stop();
                 break;
             }
             else
