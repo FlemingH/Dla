@@ -8,6 +8,8 @@ public class PrologueScript : MonoBehaviour
 {
     private GameObject panelAuthor;
     private Text textShowing;
+    private Text textToSomeOne;
+    private Text textSomeOne;
 
     private static string[] gameLineList = new string[]
     {
@@ -16,40 +18,56 @@ public class PrologueScript : MonoBehaviour
 
     private static string[] lineList = new string[] {
         "这里是赫尔辛堡，平安夜的早晨。",
-        "我刚才杀了一个人...",
+        "我刚才夺走了一条人命...",
         "所有生命都是平等的吗？",
-        "假如死去的是一个孩子，又会怎样..."
+        "如果是我们爱的人，答案会不一致吗？"
     };
 
     private void LoadLineTask()
     {
-        AudioManager.instance.StartAudioSource("Audio/Prologue", "Prologue_bgm_1");
+        Timer.Instance.AddTimerTask(3, () => {
+            SayToYf();
+            ShowPanelAuthor();
+        });
+        Timer.Instance.AddTimerTask(7, () => {
+            HidePanelAuthor();
+        });
 
-        Timer.Instance.AddTimerTask(3, ShowPanelAuthor);
-        Timer.Instance.AddTimerTask(7, HidePanelAuthor);
+        
+        Timer.Instance.AddTimerTask(9, () => {
+            SayAuthor();
+            ShowPanelAuthor();
+        });
+        Timer.Instance.AddTimerTask(8, () => {
+            AudioManager.instance.StartAudioSource("Audio/Prologue", "Prologue_bgm_1");
+        });
+        Timer.Instance.AddTimerTask(13, HidePanelAuthor);
 
-        Timer.Instance.AddTimerTask(9, ShowGameName);
-        Timer.Instance.AddTimerTask(14, HideTextShowing);
+        Timer.Instance.AddTimerTask(15, ShowGameName);
+        Timer.Instance.AddTimerTask(20, HideTextShowing);
 
-        Timer.Instance.AddTimerTask(17, ThisIsHelsingborg);
-        Timer.Instance.AddTimerTask(22, HideTextShowing);
+        Timer.Instance.AddTimerTask(23, ThisIsHelsingborg);
+        Timer.Instance.AddTimerTask(28, HideTextShowing);
 
-        Timer.Instance.AddTimerTask(24, IJustKillAMan);
-        Timer.Instance.AddTimerTask(30, HideTextShowing);
-
-        Timer.Instance.AddTimerTask(32, IsEveryoneEqual);
+        Timer.Instance.AddTimerTask(30, IJustKillAMan);
         Timer.Instance.AddTimerTask(36, HideTextShowing);
 
-        Timer.Instance.AddTimerTask(38, IfAChildDie);
-        Timer.Instance.AddTimerTask(45, HideTextShowing);
+        Timer.Instance.AddTimerTask(38, IsEveryoneEqual);
+        Timer.Instance.AddTimerTask(42, HideTextShowing);
 
-        Timer.Instance.AddTimerTask(48, LoadChapter101);
+        Timer.Instance.AddTimerTask(44, IfAChildDie);
+        Timer.Instance.AddTimerTask(51, HideTextShowing);
+
+        Timer.Instance.AddTimerTask(55, LoadChapter101);
     }
 
     public void InitScene()
     {
         panelAuthor = GameObject.Find("PanelAuthor");
         textShowing = GameObject.Find("TextShowing").GetComponent<Text>();
+
+        textToSomeOne = GameObject.Find("TextOriginalBook").GetComponent<Text>();
+        textSomeOne = GameObject.Find("TextFB").GetComponent<Text>();
 
         panelAuthor.SetActive(false);
         HideTextShowing();
@@ -71,8 +89,21 @@ public class PrologueScript : MonoBehaviour
         textShowing.text = gameLineList[0];
     }
 
+    private void SayToYf()
+    {
+        textToSomeOne.text = "献给";
+        textSomeOne.text = "XYF";
+    }
+
+    private void SayAuthor()
+    {
+        textToSomeOne.text = "原著";
+        textSomeOne.text = "Fredrik Backman";
+    }
+
     private void ShowPanelAuthor()
     {
+        
         if (panelAuthor == null)
         {
             return;
