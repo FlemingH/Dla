@@ -80,6 +80,9 @@ public class C102Script : MonoBehaviour
     private void LoadBlackLine1()
     {
         ShowLine.ShowTheBlackLine("");
+        Timer.Instance.AddTimerTask(3, () => {
+            AudioManager.instance.StartAudioSource("Audio/C102", "C102_bgm_1", true);
+        });
         Timer.Instance.AddTimerTask(4, IMetHer);
         Timer.Instance.AddTimerTask(8, () => { ShowLine.ShowTheBlackLine(""); });
         Timer.Instance.AddTimerTask(9, () => { ShowLine.ClearTheBlackLine(); });

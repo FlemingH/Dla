@@ -294,10 +294,10 @@ public class CanvasShade : MonoBehaviour
             if (isGameStoryOpen || menuMap.meun == 1)
             {
                 Time.timeScale = 1f;
+                if (!isGameStoryOpen) AudioManager.instance.RestartAudioSource();
                 HideMenu();
                 HideCanvas();
                 HideGameStory();
-                AudioManager.instance.RestartAudioSource();
                 return;
             }
             

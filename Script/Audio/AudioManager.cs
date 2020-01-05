@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance = null;
 
     private AudioSource audioSource;
+    private bool isLoop = false;
 
     public static string audioName;
 
@@ -33,17 +34,17 @@ public class AudioManager : MonoBehaviour
         audioName = "";
     }
 
-    public void StartAudioSource (string path, string name, float volume = 0.5f)
+    public void StartAudioSource (string path, string name, bool loop = false)
     {
         ClearAudioSource();
 
         audioSource.clip = Resources.Load<AudioClip>(path + "/" + name);
-        audioSource.volume = volume;
         audioName = name;
 
         if (audioSource != null && !audioSource.isPlaying)
         {
-            StartCoroutine("AudioSourceVolume", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, 3));
+            isLoop = loop;
+            StartCoroutine("AudioSourceVolume", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, 3, isLoop));
         }
     }
 
@@ -68,7 +69,7 @@ public class AudioManager : MonoBehaviour
     {
         if (audioSource != null && !audioSource.isPlaying)
         {
-            StartCoroutine("AudioSourceVolume", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, 3));
+            StartCoroutine("AudioSourceVolume", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, 3, isLoop));
         }
     }
 
@@ -102,12 +103,13 @@ public struct AudioNode
     public float volumeAdd;
     public float durationTime;
 
-    public AudioNode(AudioSource source, AudioClip clip, float m_initVolume, float m_volumeAdd, float m_durationTime)
-    {
+    public AudioNode(AudioSource source, AudioClip clip, float m_initVolume, float m_volumeAdd, float m_durationTime, bool isLoop)
+    {   
         audioSource = source;
         audioSource.playOnAwake = false;
         audioSource.volume = m_initVolume;
         audioSource.clip = clip;
+        audioSource.loop = isLoop;
         volumeAdd = m_volumeAdd;
         durationTime = m_durationTime;
     }

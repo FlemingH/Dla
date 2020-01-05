@@ -96,6 +96,14 @@ public class C101Script : MonoBehaviour
             C101ManMovement.ableToMove = true;
         });
 
+        // play c101_bgm_1 and bgm_2
+        Timer.Instance.AddTimerTask(6, () => {
+            AudioManager.instance.StartAudioSource("Audio/C101", "C101_bgm_1");
+        });
+        Timer.Instance.AddTimerTask(53, () => {
+            AudioManager.instance.StartAudioSource("Audio/C101", "C101_bgm_2");
+        });
+
         Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
     }
     
@@ -104,6 +112,8 @@ public class C101Script : MonoBehaviour
 
     public void LoadLine2()
     {
+        
+
         Timer.Instance.AddTimerTask(2, HaveADuDu);
         Timer.Instance.AddTimerTask(7, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(8, CantSayTuTu);
