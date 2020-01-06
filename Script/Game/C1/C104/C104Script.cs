@@ -129,6 +129,10 @@ public class C104Script : MonoBehaviour
     {
         chooseC104_1 = ansId;
 
+        Timer.Instance.AddTimerTask(1.5f, () => {
+            AudioManager.instance.StartAudioSource("Audio/C104", "C104_bgm_1");
+        });
+
         if (ansId == 0)
         {
             Timer.Instance.AddTimerTask(3, NotWhatYouThink);
@@ -271,6 +275,33 @@ public class C104Script : MonoBehaviour
     private void Line3Over()
     {
         ShowLine.ShowTheBlackLine("");
+        Timer.Instance.AddTimerTask(8, () => {
+            AudioManager.instance.StartAudioSource("Audio/C104", "C1_ed");
+        });
+
+        Timer.Instance.AddTimerTask(13, () => {
+            ShowLine.ShowTheBlackLine("音乐                  Chris Remo");
+        });
+
+        Timer.Instance.AddTimerTask(19, () => {
+            ShowLine.ShowTheBlackLine("");
+        });
+
+        Timer.Instance.AddTimerTask(21, () => {
+            ShowLine.ShowTheBlackLine("音乐                  Isaac Gracie");
+        });
+
+        Timer.Instance.AddTimerTask(27, () => {
+            ShowLine.ShowTheBlackLine("");
+        });
+
+        Timer.Instance.AddTimerTask(29, () => {
+            ShowLine.ShowTheLine("按 esc 跳过");
+        });
+
+        Timer.Instance.AddTimerTask(33, () => {
+            ShowLine.ClearTheLine();
+        });
     }
 
 }
