@@ -280,8 +280,16 @@ public class C104Script : MonoBehaviour
     {
         ShowLine.ShowTheBlackLine("");
         Timer.Instance.AddTimerTask(8, () => {
+
             readyToSkip = true;
-            AudioManager.instance.StartAudioSource("Audio/C104", "C1_ed");
+
+            if (GameManager.GetCurUserChoosesObj().c1_trigger_ed == 1)
+            {
+                AudioManager.instance.StartAudioSource("Audio/C104", "C1_ed_egg");
+            } else
+            {
+                AudioManager.instance.StartAudioSource("Audio/C104", "C1_ed");
+            }
         });
 
         Timer.Instance.AddTimerTask(13, () => {

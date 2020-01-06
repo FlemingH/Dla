@@ -65,10 +65,10 @@ public class GameManager : MonoBehaviour
                 if (C104Script.chooseC104_2_2 != -1) userChooseV1.c104_2_2 = C104Script.chooseC104_2_2;
                 if (C104Script.chooseC104_3 != -1) userChooseV1.c104_3 = C104Script.chooseC104_3;
 
-                Debug.Log(JsonUtility.ToJson(userChooseV1));
-
                 // save data
                 RewriteDataList("Chapter104", JsonUtility.ToJson(userChooseV1));
+
+                AudioManager.instance.FadeStopAudioSource();
             }
 
             return;
@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour
             if (C103Script.chooseC103_1 != -1) userChooseV1.c103_1 = C103Script.chooseC103_1;
             if (C103Script.chooseC103_2 != -1) userChooseV1.c103_2 = C103Script.chooseC103_2;
             if (C103Script.chooseC103_3 != -1) userChooseV1.c103_3 = C103Script.chooseC103_3;
+            if (C103Script.triggerHideEd != -1) userChooseV1.c1_trigger_ed = C103Script.triggerHideEd;
 
             // save data
             RewriteDataList("Chapter104", JsonUtility.ToJson(userChooseV1));
@@ -177,7 +178,7 @@ public class GameManager : MonoBehaviour
         return dataList;
     }
 
-    private UserChooseV1 GetCurUserChoosesObj()
+    public static UserChooseV1 GetCurUserChoosesObj()
     {
         DataList curDataList = JsonUtility.FromJson<DataList>(PlayerPrefs.GetString("DataList"));
 
@@ -279,6 +280,7 @@ public class UserChooseV1
     public int c103_1 = -1;
     public int c103_2 = -1;
     public int c103_3 = -1;
+    public int c1_trigger_ed = -1;
 
     public int c104_1 = -1;
     public int c104_2_1 = -1;

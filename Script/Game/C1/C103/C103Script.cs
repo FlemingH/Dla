@@ -9,6 +9,7 @@ public class C103Script : MonoBehaviour
     public static int chooseC103_1 = -1;
     public static int chooseC103_2 = -1;
     public static int chooseC103_3 = -1;
+    public static int triggerHideEd = -1;
 
     private static string[] lineList1 = new string[]
     {
@@ -115,7 +116,9 @@ public class C103Script : MonoBehaviour
         animatorColor4 = Color4.GetComponent<Animator>();
 
         SceneStep1();
-        LoadLine1();
+        LoadLine2();
+
+        triggerHideEd = -1;
     }
 
     private void StartColorAnim(int i)
@@ -386,6 +389,12 @@ public class C103Script : MonoBehaviour
     private void LoadEndBackLine()
     {
         ShowLine.ShowTheBlackLine("");
+
+        if (animatorColor4.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            triggerHideEd = 1;
+        }
+
         Timer.Instance.AddTimerTask(2, () => { ShowLine.ShowTheBlackLine(lineList4[0]); });
         Timer.Instance.AddTimerTask(6, () => { ShowLine.ShowTheBlackLine(""); });
         Timer.Instance.AddTimerTask(7, () => { ShowLine.ShowTheBlackLine(lineList4[1]); });
