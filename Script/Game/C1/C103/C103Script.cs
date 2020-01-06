@@ -116,7 +116,7 @@ public class C103Script : MonoBehaviour
         animatorColor4 = Color4.GetComponent<Animator>();
 
         SceneStep1();
-        LoadLine2();
+        LoadLine1();
 
         triggerHideEd = -1;
     }
