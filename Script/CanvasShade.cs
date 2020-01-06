@@ -259,6 +259,7 @@ public class CanvasShade : MonoBehaviour
                     HideCanvas();
 
                     Timer.Instance.ClearAllTask();
+                    AudioManager.instance.FadeStopAudioSource();
 
                     SceneManager.LoadScene("StartMenuScene");
                     return;
