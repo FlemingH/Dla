@@ -52,6 +52,25 @@ public class GameManager : MonoBehaviour
             keyController = GetComponent<KeyController>();
 
             InitGame();
+
+            // for Chapter1 end temporary
+            if (C104Script.chooseC104_1 != -1)
+            {
+                // get pre data
+                UserChooseV1 userChooseV1 = GetCurUserChoosesObj();
+
+                // override data
+                if (C104Script.chooseC104_1 != -1) userChooseV1.c104_1 = C104Script.chooseC104_1;
+                if (C104Script.chooseC104_2_1 != -1) userChooseV1.c104_2_1 = C104Script.chooseC104_2_1;
+                if (C104Script.chooseC104_2_2 != -1) userChooseV1.c104_2_2 = C104Script.chooseC104_2_2;
+                if (C104Script.chooseC104_3 != -1) userChooseV1.c104_3 = C104Script.chooseC104_3;
+
+                Debug.Log(JsonUtility.ToJson(userChooseV1));
+
+                // save data
+                RewriteDataList("Chapter104", JsonUtility.ToJson(userChooseV1));
+            }
+
             return;
         }
         if (scence.name == "PrologueScene")
@@ -260,4 +279,9 @@ public class UserChooseV1
     public int c103_1 = -1;
     public int c103_2 = -1;
     public int c103_3 = -1;
+
+    public int c104_1 = -1;
+    public int c104_2_1 = -1;
+    public int c104_2_2 = -1;
+    public int c104_3 = -1;
 }

@@ -21,6 +21,13 @@ public class KeyController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            if (C104Script.readyToSkip)
+            {
+                Timer.Instance.ClearAllTask();
+                SceneManager.LoadScene("StartMenuScene");
+                return;
+            }
+
             if (!CanvasShade.isCanvasOpen)
             {
                 Time.timeScale = 0;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class C104Script : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class C104Script : MonoBehaviour
     public static int chooseC104_2_1 = -1;
     public static int chooseC104_2_2 = -1;
     public static int chooseC104_3 = -1;
+
+    public static bool readyToSkip = false;
 
     // C104_1
     private static string[] lineManList1 = new string[]
@@ -109,6 +112,7 @@ public class C104Script : MonoBehaviour
 
     public void InitScene()
     {
+        readyToSkip = false;
         LoadLine1();
     }
 
@@ -276,6 +280,7 @@ public class C104Script : MonoBehaviour
     {
         ShowLine.ShowTheBlackLine("");
         Timer.Instance.AddTimerTask(8, () => {
+            readyToSkip = true;
             AudioManager.instance.StartAudioSource("Audio/C104", "C1_ed");
         });
 
