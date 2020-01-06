@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource audioSource;
     private bool isLoop = false;
+    // to know if it is stop or pause
+    private bool isPause = false;
     private float defaultMaxVolume = 0.3f;
     private float fadeTime = 1;
     private float curVolume = 0.0f;
@@ -65,17 +67,18 @@ public class AudioManager : MonoBehaviour
 
     public void PauseAudioSource()
     {
-        StopCoroutine("AudioSourceVolumeStart");
         if (audioSource != null && audioSource.isPlaying)
         {
+            isPause = true;
             audioSource.Pause();
         }
     }
 
     public void RestartAudioSource()
     {
-        if (audioSource != null && !audioSource.isPlaying)
+        if (audioSource != null && !audioSource.isPlaying && isPause)
         {
+            isPause = false;
             StartCoroutine("AudioSourceVolumeStart", new AudioNode(audioSource, audioSource.clip, 0, 0.1f, fadeTime, isLoop));
         }
     }
