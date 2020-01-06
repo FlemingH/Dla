@@ -20,7 +20,7 @@ public class PrologueScript : MonoBehaviour
         "这里是赫尔辛堡，平安夜的早晨。",
         "我刚才夺走了一条人命...",
         "所有生命都是平等的吗？",
-        "如果是我们爱的人，答案会不一致吗？"
+        "如果是我们爱的人，答案会不一样吗？"
     };
 
     private void LoadLineTask()
