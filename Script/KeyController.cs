@@ -23,6 +23,7 @@ public class KeyController : MonoBehaviour
         {
             if (C104Script.readyToSkip)
             {
+                C104Script.readyToSkip = false;
                 Timer.Instance.ClearAllTask();
                 SceneManager.LoadScene("StartMenuScene");
                 return;
