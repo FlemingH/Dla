@@ -167,17 +167,17 @@ public class C103Script : MonoBehaviour
     private void LoadLine1()
     {
         ShowLine.ShowTheBlackLine("");
-        Timer.Instance.AddTimerTask(4, () => { ShowLine.ClearTheBlackLine(); });
-        Timer.Instance.AddTimerTask(7, NotAccid);
-        Timer.Instance.AddTimerTask(11, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(12, ImLiveHere);
-        Timer.Instance.AddTimerTask(15, CauseCancer);
-        Timer.Instance.AddTimerTask(18, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(20, ImHide);
-        Timer.Instance.AddTimerTask(25, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(26, TheySayToMe);
-        Timer.Instance.AddTimerTask(31, TheyWereWrony);
-        Timer.Instance.AddTimerTask(37, Line1Over);
+        Timer.Instance.AddTimerTask(6, () => { ShowLine.ClearTheBlackLine(); });
+        Timer.Instance.AddTimerTask(9, NotAccid);
+        Timer.Instance.AddTimerTask(13, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(14, ImLiveHere);
+        Timer.Instance.AddTimerTask(17, CauseCancer);
+        Timer.Instance.AddTimerTask(20, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(22, ImHide);
+        Timer.Instance.AddTimerTask(27, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(28, TheySayToMe);
+        Timer.Instance.AddTimerTask(33, TheyWereWrony);
+        Timer.Instance.AddTimerTask(39, Line1Over);
     }
 
     private void NotAccid() { ShowLine.ShowTheLine(lineList1[0]); }
@@ -391,7 +391,7 @@ public class C103Script : MonoBehaviour
         Timer.Instance.AddTimerTask(11, () => { ShowLine.ShowTheBlackLine(""); });
         Timer.Instance.AddTimerTask(12, () => { ShowLine.ShowTheBlackLine(lineList4[2]); });
         Timer.Instance.AddTimerTask(16, () => { ShowLine.ShowTheBlackLine(""); });
-        Timer.Instance.AddTimerTask(18, ToC104);
+        Timer.Instance.AddTimerTask(20, ToC104);
     }
     private void ToC104()
     {

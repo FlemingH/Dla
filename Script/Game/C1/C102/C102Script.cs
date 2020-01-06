@@ -80,26 +80,27 @@ public class C102Script : MonoBehaviour
     private void LoadBlackLine1()
     {
         ShowLine.ShowTheBlackLine("");
-        Timer.Instance.AddTimerTask(4, IMetHer);
-        Timer.Instance.AddTimerTask(8, () => { ShowLine.ShowTheBlackLine(""); });
-        Timer.Instance.AddTimerTask(9, () => { ShowLine.ClearTheBlackLine(); });
-        Timer.Instance.AddTimerTask(12, SheNextToMe);
-        Timer.Instance.AddTimerTask(17, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(19, ImFearOfHer);
-        Timer.Instance.AddTimerTask(22, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(23, ImSurvive);
-        Timer.Instance.AddTimerTask(28, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(29, FearDead);
-        Timer.Instance.AddTimerTask(33, () => { ShowLine.ClearTheLine(); });
-        Timer.Instance.AddTimerTask(34, WhyWeSurvive);
-        Timer.Instance.AddTimerTask(39, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(6, IMetHer);
+        Timer.Instance.AddTimerTask(10, () => { ShowLine.ShowTheBlackLine(""); });
+        Timer.Instance.AddTimerTask(11, () => { ShowLine.ClearTheBlackLine(); });
 
-        Timer.Instance.AddTimerTask(40, () => {
+        Timer.Instance.AddTimerTask(11, () => {
             AudioManager.instance.StartAudioSource("Audio/C102", "C102_bgm_1", true);
         });
 
+        Timer.Instance.AddTimerTask(14, SheNextToMe);
+        Timer.Instance.AddTimerTask(19, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(21, ImFearOfHer);
+        Timer.Instance.AddTimerTask(24, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(25, ImSurvive);
+        Timer.Instance.AddTimerTask(30, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(31, FearDead);
+        Timer.Instance.AddTimerTask(35, () => { ShowLine.ClearTheLine(); });
+        Timer.Instance.AddTimerTask(36, WhyWeSurvive);
+        Timer.Instance.AddTimerTask(41, () => { ShowLine.ClearTheLine(); });
+
         // set ques 1
-        Timer.Instance.AddTimerTask(42, () => {
+        Timer.Instance.AddTimerTask(44, () => {
             ShowLine.SetChooseLine(
                 chooseLineList1[0],
                 chooseLineList1[1],
