@@ -72,6 +72,9 @@ public class C101Script : MonoBehaviour
 
     private void LoadLine1()
     {
+        Timer.Instance.AddTimerTask(2, () => {
+            AudioManager.instance.FadeStopAudioSource();
+        });
         Timer.Instance.AddTimerTask(4, MetHer);
         Timer.Instance.AddTimerTask(9, () => { ShowLine.ClearTheLine(); });
         Timer.Instance.AddTimerTask(10, WantRed);
