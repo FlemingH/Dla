@@ -198,6 +198,7 @@ public class C103Script : MonoBehaviour
     private void LoadLine2()
     {
         IHeardTheyTalk();
+        AudioManager.instance.StartAudioSource("Audio/C103", "C103_bgm_1");
         Timer.Instance.AddTimerTask(5, () => { ShowLine.ClearTheBlackLine(); });
         Timer.Instance.AddTimerTask(7, WhatYouWantToDo);
         Timer.Instance.AddTimerTask(12, () => { ShowLine.ClearTheLine(); });
