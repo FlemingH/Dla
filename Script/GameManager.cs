@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     private void InitGame()
     {
-        // Cursor.visible = false;
+        Cursor.visible = false;
         startMenuManager.InitMenu(GetUserData());
     }
 
