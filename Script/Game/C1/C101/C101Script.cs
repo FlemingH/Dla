@@ -62,6 +62,11 @@ public class C101Script : MonoBehaviour
         GirlTrigger.ResetScript();
         RoomBookTrigger.ResetScript();
 
+        isLineTriggered = false;
+        isGirlTriggered = false;
+        isStoryTriggered = false;
+        isSheCome = false;
+
         LoadLine1();
     }
 
