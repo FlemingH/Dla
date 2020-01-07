@@ -301,7 +301,15 @@ public class C104Script : MonoBehaviour
         });
 
         Timer.Instance.AddTimerTask(21, () => {
-            ShowLine.ShowTheBlackLine("音乐                  Isaac Gracie");
+
+            if (GameManager.GetCurUserChoosesObj().c1_trigger_ed == 1)
+            {
+                ShowLine.ShowTheBlackLine("音乐                  fripSide");
+            }
+            else
+            {
+                ShowLine.ShowTheBlackLine("音乐                  Isaac Gracie");
+            }
         });
 
         Timer.Instance.AddTimerTask(27, () => {
