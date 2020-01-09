@@ -169,7 +169,6 @@ public class GameManager : MonoBehaviour
                 dataList.isNew = false;
             }
             dataList.dataNum = 1;
-            dataList.userChooseV1 = standardPlayChoose;
         } else
         {
             dataList.data1 = standardPlayData;
