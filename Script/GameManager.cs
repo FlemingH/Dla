@@ -156,6 +156,9 @@ public class GameManager : MonoBehaviour
     {
         dataList = new DataList();
 
+        // dev mode
+        PlayerPrefs.DeleteAll();
+
         if (PlayerPrefs.HasKey("DataList"))
         {
             dataList = JsonUtility.FromJson<DataList>(PlayerPrefs.GetString("DataList"));

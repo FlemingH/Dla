@@ -478,7 +478,10 @@ public class StartMenuManager : MonoBehaviour
             data3 = GameManager.standardPlayData,
             isNew = false,
             dataNum = 1,
-            userChooseV1 = GameManager.standardPlayChoose
+
+            // use default data to start (dev mode)
+            // userChooseV1 = GameManager.standardPlayChoose
+            userChooseV1 = GameManager.standardPlayChooseForStart
         };
 
         curUserData1 = JsonUtility.FromJson<UserData>(curDataList.data1);
@@ -492,21 +495,29 @@ public class StartMenuManager : MonoBehaviour
     {
         if (curUserData2.progress == "")
         {
+            // no queue mode
             curDataList.data2 = GameManager.standardPlayDataForStart;
             curDataList.dataNum = 2;
+
             // save data
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
-            SceneManager.LoadScene("PrologueScene");
+
+            // load the data2 progress
+            SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data2).progress);
             return;
         }
 
         if (curUserData3.progress == "")
         {
+            // no queue mode
             curDataList.data3 = GameManager.standardPlayDataForStart;
             curDataList.dataNum = 3;
+
             // save data
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
-            SceneManager.LoadScene("PrologueScene");
+
+            // load the data3 progress
+            SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data3).progress);
             return;
         }
 
@@ -519,9 +530,12 @@ public class StartMenuManager : MonoBehaviour
             curDataList.data2 = data1;
             curDataList.data3 = data2;
             curDataList.dataNum = 1;
+
             // sava data
             PlayerPrefs.SetString("DataList", JsonUtility.ToJson(curDataList));
-            SceneManager.LoadScene("PrologueScene");
+
+            // load the data1 progress
+            SceneManager.LoadScene(JsonUtility.FromJson<UserData>(curDataList.data1).progress);
             return;
         }
     }
