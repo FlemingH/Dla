@@ -286,9 +286,14 @@ public class C104Script : MonoBehaviour
             if (GameManager.GetCurUserChoosesObj().c1_trigger_ed == 1)
             {
                 AudioManager.instance.StartAudioSource("Audio/C104", "C1_ed_egg");
+
+                Timer.Instance.AddTimerTask(346, JumpToC201); // wait 5:46 to go c201, 4 more sec
+
             } else
             {
                 AudioManager.instance.StartAudioSource("Audio/C104", "C1_ed");
+
+                Timer.Instance.AddTimerTask(223, JumpToC201); // wait 3:43 to go c201, 4 more sec
             }
         });
 
@@ -325,4 +330,9 @@ public class C104Script : MonoBehaviour
         });
     }
 
+    private void JumpToC201()
+    {
+        readyToSkip = false;
+        SceneManager.LoadScene("Chapter201");
+    }
 }

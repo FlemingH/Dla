@@ -18,10 +18,13 @@ public class GameManager : MonoBehaviour
     private KeyController keyController;
 
     private PrologueScript prologueScript;
+
     private C101Script c101Script;
     private C102Script c102Script;
     private C103Script c103Script;
     private C104Script c104Script;
+
+    private C201Script c201Script;
 
     private DataList dataList;
 
@@ -52,25 +55,6 @@ public class GameManager : MonoBehaviour
             keyController = GetComponent<KeyController>();
 
             InitGame();
-
-            // for Chapter1 end temporary
-            if (C104Script.chooseC104_1 != -1)
-            {
-                // get pre data
-                UserChooseV1 userChooseV1 = GetCurUserChoosesObj();
-
-                // override data
-                if (C104Script.chooseC104_1 != -1) userChooseV1.c104_1 = C104Script.chooseC104_1;
-                if (C104Script.chooseC104_2_1 != -1) userChooseV1.c104_2_1 = C104Script.chooseC104_2_1;
-                if (C104Script.chooseC104_2_2 != -1) userChooseV1.c104_2_2 = C104Script.chooseC104_2_2;
-                if (C104Script.chooseC104_3 != -1) userChooseV1.c104_3 = C104Script.chooseC104_3;
-
-                // save data
-                RewriteDataList("Chapter104", JsonUtility.ToJson(userChooseV1));
-
-                AudioManager.instance.FadeStopAudioSource();
-            }
-
             return;
         }
         if (scence.name == "PrologueScene")
@@ -125,6 +109,28 @@ public class GameManager : MonoBehaviour
 
             c104Script = GetComponent<C104Script>();
             c104Script.InitScene();
+            return;
+        }
+        if (scence.name == "Chapter201")
+        {
+            // get pre data
+            UserChooseV1 userChooseV1 = GetCurUserChoosesObj();
+
+            // override data
+            if (C104Script.chooseC104_1 != -1) userChooseV1.c104_1 = C104Script.chooseC104_1;
+            if (C104Script.chooseC104_2_1 != -1) userChooseV1.c104_2_1 = C104Script.chooseC104_2_1;
+            if (C104Script.chooseC104_2_2 != -1) userChooseV1.c104_2_2 = C104Script.chooseC104_2_2;
+            if (C104Script.chooseC104_3 != -1) userChooseV1.c104_3 = C104Script.chooseC104_3;
+
+            Debug.Log(JsonUtility.ToJson(userChooseV1));
+
+            // save data
+            RewriteDataList("Chapter201", JsonUtility.ToJson(userChooseV1));
+
+            AudioManager.instance.FadeStopAudioSource();
+
+            c201Script = GetComponent<C201Script>();
+            c201Script.InitScene();
             return;
         }
     }
@@ -260,10 +266,13 @@ public class ChapterName
     public ChapterName()
     {
         nameMap.Add("PrologueScene", "序章");
+
         nameMap.Add("Chapter101", "医院，七天前");
         nameMap.Add("Chapter102", "车祸，疑惑");
         nameMap.Add("Chapter103", "消防通道，六天前");
         nameMap.Add("Chapter104", "车祸，交易");
+
+        nameMap.Add("Chapter201", "回家，十五年前");
     }
 
     public static string GetChapterName(string code)

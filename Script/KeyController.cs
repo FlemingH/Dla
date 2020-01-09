@@ -25,7 +25,7 @@ public class KeyController : MonoBehaviour
             {
                 C104Script.readyToSkip = false;
                 Timer.Instance.ClearAllTask();
-                SceneManager.LoadScene("StartMenuScene");
+                SceneManager.LoadScene("Chapter201");
                 return;
             }
 
