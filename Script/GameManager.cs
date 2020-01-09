@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public static string standardPlayData = JsonUtility.ToJson(new UserData("", ""));
-    public static string standardPlayDataForStart = JsonUtility.ToJson(new UserData("PrologueScene", ""));
+    public static string standardPlayDataForStart = JsonUtility.ToJson(new UserData("Chapter201", ""));
 
     public static string standardPlayChoose = JsonUtility.ToJson(new UserChooseV1());
     public static string standardPlayChooseForStart = JsonUtility.ToJson(new UserChooseV1(true));
@@ -122,8 +122,6 @@ public class GameManager : MonoBehaviour
             if (C104Script.chooseC104_2_1 != -1) userChooseV1.c104_2_1 = C104Script.chooseC104_2_1;
             if (C104Script.chooseC104_2_2 != -1) userChooseV1.c104_2_2 = C104Script.chooseC104_2_2;
             if (C104Script.chooseC104_3 != -1) userChooseV1.c104_3 = C104Script.chooseC104_3;
-
-            Debug.Log(JsonUtility.ToJson(userChooseV1));
 
             // save data
             RewriteDataList("Chapter201", JsonUtility.ToJson(userChooseV1));
