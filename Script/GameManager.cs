@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public static string standardPlayDataForStart = JsonUtility.ToJson(new UserData("PrologueScene", ""));
 
     public static string standardPlayChoose = JsonUtility.ToJson(new UserChooseV1());
+    public static string standardPlayChooseForStart = JsonUtility.ToJson(new UserChooseV1(true));
 
     private StartMenuManager startMenuManager;
     private KeyController keyController;
@@ -294,4 +295,25 @@ public class UserChooseV1
     public int c104_2_1 = -1;
     public int c104_2_2 = -1;
     public int c104_3 = -1;
+
+    public UserChooseV1 () { }
+
+    public UserChooseV1 (bool flag)
+    {
+        if (flag)
+        {
+            c102_1 = 0;
+            c102_2 = 0;
+
+            c103_1 = 0;
+            c103_2 = 0;
+            c103_3 = 0;
+            c1_trigger_ed = -1;
+
+            c104_1 = 0;
+            c104_2_1 = 0;
+            c104_2_2 = 0;
+            c104_3 = 0;
+        }
+    }
 }
